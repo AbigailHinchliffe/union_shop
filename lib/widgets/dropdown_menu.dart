@@ -5,6 +5,7 @@ class DropDown extends StatelessWidget {
 
   @override
   Widget build (BuildContext context){
+    final screenWidth = MediaQuery.of(context).size.width;
     return PopupMenuButton<String>(
       icon: const Icon(
         Icons.menu,
@@ -12,9 +13,9 @@ class DropDown extends StatelessWidget {
         color: Colors.grey,
       ),
       padding: const EdgeInsets.all(8),
-        constraints: const BoxConstraints(
-        minWidth: 32,
-        minHeight: 32,
+      offset: const Offset(0,18*2),
+        constraints: BoxConstraints(
+        minWidth: screenWidth - 16,
       ),
       itemBuilder: (context) => const[
         PopupMenuItem(value: 'home', child: Text('Home')),
