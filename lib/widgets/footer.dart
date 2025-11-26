@@ -10,7 +10,7 @@ class Footer extends StatelessWidget {
       color: Colors.grey[50],
       padding: const EdgeInsets.all(24),
       child: const Text(
-        'Placeholder Footer',
+        '@upsu store 2025/26',
         style: TextStyle(
           color: Colors.grey,
           fontSize: 16,
