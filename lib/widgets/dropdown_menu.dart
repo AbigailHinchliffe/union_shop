@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart'; 
 import 'package:union_shop/about_us.dart';
+import 'package:union_shop/main.dart';
 
 class DropDown extends StatefulWidget {
   const DropDown({super.key});
@@ -47,9 +48,13 @@ class _DropDownState extends State<DropDown> {
                       children: [
                         ListTile(
                           title: const Text('Home', style: TextStyle(fontSize: 18)),
-                          onTap: () => _select('home'),
-                        ),
-                        const Divider(height: 1),
+                          onTap: () {
+                            _close();
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const HomeScreen()),//=> _select('home'),
+                        );
+                        const Divider(height: 1);}),
                         ListTile(
                           title: const Text('About', style: TextStyle(fontSize: 18)),
                           onTap: () {
