@@ -10,7 +10,7 @@ class Footer extends StatelessWidget {
       color: Colors.grey[50],
       padding: const EdgeInsets.all(24),
       child: const Text(
-        '@upsu store 2025/26',
+        'Office hours:\n\n Monday - Friday 10am - 4pm\nOnline 24/7\n\n@upsu store 2025/26',
         style: TextStyle(
           color: Colors.grey,
           fontSize: 16,
