@@ -20,12 +20,13 @@ class AboutUs extends StatelessWidget {
             ),
             const SizedBox(height:12),
             Center(
-              child:Text(
-              'We are the University of Portsmouth Students Union, est. since 1911, we represent over 23,000 students at the University of Portsmouth. Our mission is to...',
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),),
-          ],
+              child: Text(
+                'Welcome to our store! We are dedicated to providing you with the best University branded products, with clothing and merchandise available to shop all year round! We even offer exclusive personalisaton services!\n\nThe purchases are available for delivery or collection.\n\nHappy Shopping!\n\nUnion Shop Team',
+                textAlign: TextAlign.left,
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+            ),
+            ],
           ),
         ),
       ),
