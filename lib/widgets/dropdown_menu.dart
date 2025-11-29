@@ -95,7 +95,7 @@ class _DropDownState extends State<DropDown> {
   Widget build(BuildContext context) {
     return IconButton(
       key: _buttonKey, 
-      icon: Icon(_isOpen ? Icons.close : Icons.menu, size: 22, color: Colors.grey[800]),
+      icon: Icon(_isOpen ? Icons.close : Icons.menu, size: 22, color: Colors.grey),
       padding: const EdgeInsets.all(8),
       onPressed: _isOpen ? _close : _open, 
     );
