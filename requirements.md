@@ -25,8 +25,8 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅​] Seperate out header from main file
   - [✅​] Add AppShell usage: wrap page content with AppShell so header/footer appear
   - [✅​] Implement hero section (image, title, CTA) and declare hero asset in pubspec.yaml
-  - [❌] Implement ProductCard widget and show a static list/grid of preview cards
-  - [❌] Add responsive layout rules (single column on narrow, grid on wide)
+  - [✅] Implement ProductCard widget and show a static list/grid of preview cards
+  - [✅] Add responsive layout rules (single column on narrow, grid on wide)
   - [❌] Add placeholder CTA actions (SnackBar or Navigator to placeholder route)
   - [❌] Write one widget test verifying hero and at least one ProductCard render
   - [❌] Manual QA: test in Chrome mobile emulation and desktop widths
@@ -39,7 +39,7 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅​] Add a simple back/navigation button
   - [✅] Add one widget test asserting the title and a paragraph exist
 
-- [✅] Footer
+- [✅] Footer (4%)
   - [✅​] Implement Footer widget (lib/widgets/footer.dart)
   - [✅​] Add dummy links: Search, Terms & Conditions of Sale, Contact
   - [✅] Implement placeholder handlers (SnackBar or Navigator to a stub page)
