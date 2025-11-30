@@ -39,13 +39,13 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅​] Add a simple back/navigation button
   - [✅] Add one widget test asserting the title and a paragraph exist
 
-- [❌​] Footer
+- [✅] Footer
   - [✅​] Implement Footer widget (lib/widgets/footer.dart)
   - [✅​] Add dummy links: Search, Terms & Conditions of Sale, Contact
   - [✅] Implement placeholder handlers (SnackBar or Navigator to a stub page)
   - [✅​] Include Footer in AppShell and verify it renders on at least one page
   - [✅] Add a small interaction test for tapping one footer link
-  - [❌] Test that the footer renders & exists
+  - [✅] Test that the footer renders & exists
 
 - [❌] Collections Page
   - [❌] Create CollectionsScreen and route (lib/screens/collections_screen.dart)
