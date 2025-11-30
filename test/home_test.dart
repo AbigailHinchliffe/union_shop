@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/main.dart';
+import 'package:union_shop/widgets/footer.dart';
 
 void main() {
   group('Home Page Tests', () {
     testWidgets('should display home page with basic elements', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       // Check that basic UI elements are present
       expect(
@@ -21,7 +22,7 @@ void main() {
 
     testWidgets('should display product cards', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       // Check that product cards are displayed
       expect(find.text('Placeholder Product 1'), findsOneWidget);
@@ -38,7 +39,7 @@ void main() {
 
     testWidgets('should display header icons', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pump();
+      await tester.pumpAndSettle();
 
       // Check that header icons are present
       expect(find.byIcon(Icons.search), findsOneWidget);
@@ -48,14 +49,36 @@ void main() {
 
     testWidgets('should display footer', (tester) async {
       await tester.pumpWidget(const UnionShopApp());
-      await tester.pump();
+      await tester.pumpAndSettle();
 
-      // Check that footer is present
-      expect(find.text('Placeholder Footer'), findsOneWidget);
-      expect(
-        find.text('Students should customise this footer section'),
-        findsOneWidget,
+      // Check that Footer widget exists in the tree
+      expect(find.byType(Footer), findsOneWidget);
+
+      // Robust substring check for footer text (tolerant to spacing/newlines)
+      final upsufinder = find.byWidgetPredicate(
+        (widget) => widget is Text && (widget.data ?? '').toLowerCase().contains('@upsu'),
+        description: 'Text widget containing "@upsu"',
       );
+      expect(upsufinder, findsOneWidget);
     });
+  });
+
+  testWidgets('Footer shows office hours and @upsu text', (WidgetTester tester) async {
+    // Provide Material and Scaffold so Footer's Material widgets and ScaffoldMessenger work.
+    await tester.pumpWidget(const MaterialApp(home: Scaffold(body: Footer())));
+    await tester.pumpAndSettle();
+
+    // Use substring checks so spacing/newlines don't break the test.
+    final officeFinder = find.byWidgetPredicate(
+      (w) => w is Text && (w.data ?? '').toLowerCase().contains('office hours'),
+      description: 'Text containing "Office hours"',
+    );
+    final upsufinder = find.byWidgetPredicate(
+      (w) => w is Text && (w.data ?? '').toLowerCase().contains('@upsu'),
+      description: 'Text containing "@upsu"',
+    );
+
+    expect(officeFinder, findsOneWidget);
+    expect(upsufinder, findsOneWidget);
   });
 }
