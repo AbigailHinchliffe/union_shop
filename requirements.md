@@ -89,25 +89,90 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [❌] Ensure header is included via AppShell so it's present on all pages
   - [❌] Add accessibility semantics and a widget test for menu open/close
 
-### 3.2 Intermediate Features (35%)
+### 3.2 Intermediate Features (35%) — decomposed tasks
 
-| Feature                     | Description                             | Requirement Notes                      |
-| --------------------------- | --------------------------------------- | -------------------------------------- |
-| Dynamic Collections         | Fetched from model/service              | Sorting/filtering/pagination must work |
-| Dynamic Collection Page     | Product listings dynamically populated  | Functional widgets                     |
-| Functional Product Page     | Interactive dropdowns & counters        | No need to add to cart yet             |
-| Shopping Cart               | Add to cart, view cart, simple checkout | No real payment needed                 |
-| Print Shack Personalisation | Dynamic form updates                    | Includes related “About”               |
-| Navigation                  | Full page-to-page navigation            | Navbar + buttons + URLs                |
-| Responsiveness              | App adapts to desktop and mobile        | Chrome DevTools view recommended       |
+- [ ] Dynamic Collections (fetch from service/model)
+  - [ ] Create a Collection model (lib/models/collection.dart)
+  - [ ] Build a LocalData service that returns collections (lib/services/local_data.dart)
+  - [ ] Replace static collection data with service calls in CollectionsScreen
+  - [ ] Add caching/loading state and a simple loading indicator
+  - [ ] Write unit tests for the service and model parsing
 
-### 3.3 Advanced Features (25%)
+- [ ] Dynamic Collection Page (populate listings)
+  - [ ] Accept collection id/slug via route arguments
+  - [ ] Query LocalData/service for products in the collection
+  - [ ] Implement empty / error / loading states in UI
+  - [ ] Add "sort by" and "filter" UI controls (UI only first)
+  - [ ] Add widget tests for correct filtering/route wiring
 
-| Feature               | Description                                               |
-| --------------------- | --------------------------------------------------------- |
-| Authentication System | Full login system with external provider (e.g., Firebase) |
-| Cart Management       | Quantity editing, removal, price updates, persistence     |
-| Search System         | Search via navbar/footer, dynamic results                 |
+- [ ] Functional Product Page (interactive dropdowns & counters)
+  - [ ] Add Product model (lib/models/product.dart) with attributes (sizes, colours, price, onSale)
+  - [ ] Load product data from LocalData/service for ProductPage
+  - [ ] Implement size and colour dropdowns (local state)
+  - [ ] Implement quantity selector with min/max validation
+  - [ ] Update displayed price when options change (if applicable)
+  - [ ] Add widget tests for interaction flows (change size/quantity)
+
+- [ ] Shopping Cart (UI & add/view)
+  - [ ] Create a Cart model and simple CartService (in-memory)
+  - [ ] Implement "Add to cart" UI on ProductPage that uses CartService
+  - [ ] Create a CartScreen showing items, totals and basic edit controls
+  - [ ] Add persistence stub (SharedPreferences or in-memory for now)
+  - [ ] Add widget tests for adding/removing items and total calculation
+
+- [ ] Print Shack Personalisation (form & preview)
+  - [ ] Create PrintShack screen with personalization form fields
+  - [ ] Validate inputs and show a live preview area (UI-only rendering)
+  - [ ] Implement saving/submitting stub (SnackBar or local model)
+  - [ ] Add tests for form validation and preview update
+
+- [ ] Full Navigation & Route Management
+  - [ ] Centralize routes in main.dart (routes map or onGenerateRoute)
+  - [ ] Ensure named routes exist for Home, Collections, CollectionDetail, Product, About, Sale, Cart
+  - [ ] Add deep-link friendly route parameters (e.g., /product/:id)
+  - [ ] Add widget tests that navigate between two screens
+
+- [ ] Responsiveness polish
+  - [ ] Audit layout at common breakpoints and fix overflow issues
+  - [ ] Ensure lists/grids adapt columns based on MediaQuery width
+  - [ ] Add responsive tests or manual checklist and verify in browser
+
+### 3.3 Advanced Features (25%) — decomposed tasks
+
+- [ ] Authentication System (external provider, e.g., Firebase)
+  - [ ] Add auth abstraction (AuthService interface) and implement mock first
+  - [ ] Add Firebase config (optional) and implement AuthServiceFirebase
+  - [ ] Implement Login and Signup flows with provider integration
+  - [ ] Protect pages (Cart / Checkout) behind auth guard (UI behaviour)
+  - [ ] Add unit/integration tests for auth flows (mock provider)
+
+- [ ] Cart Management (full editing & persistence)
+  - [ ] Move CartService to a persistent storage (SharedPreferences / local DB / Firestore)
+  - [ ] Implement quantity editing, item removal and saved cart across sessions
+  - [ ] Add estimated totals, VAT/shipping calc stubs
+  - [ ] Add tests verifying persistence and edit behaviours
+
+- [ ] Search System (navbar/footer search + results)
+  - [ ] Implement a SearchService using LocalData initially
+  - [ ] Add search input in header and footer with debounce
+  - [ ] Create SearchResultsScreen that accepts a query and shows results
+  - [ ] Support filtering/sorting in results (UI)
+  - [ ] Add widget tests for search input → results flow
+
+- [ ] Checkout / Order flow (UI-only or stubbed)
+  - [ ] Implement CheckoutScreen that summarizes cart and captures address
+  - [ ] Add validation and summary confirmation step
+  - [ ] Implement an order-success screen (no real payments)
+  - [ ] Add tests for checkout validation and success flow
+
+- [ ] Monitoring, Logging & CI
+  - [ ] Add basic error reporting/logging hooks (print or logging package)
+  - [ ] Add CI workflow to run flutter analyze and tests on push
+  - [ ] Add a small end-to-end checklist for manual verification before submission
+
+Notes
+- Implement features incrementally; each subtask should be a small commit with tests where feasible.
+- Prioritise intermediate features that unlock others (models/services, navigation, cart) before advanced features that depend on them.
 
 ---
 
