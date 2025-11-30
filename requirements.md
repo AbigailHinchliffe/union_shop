@@ -23,7 +23,6 @@ The project will be demonstrated live and submitted as a GitHub repository link 
 
 - [❌] Static Homepage
   - [✅​] Seperate out header from main file
-  - [❌] Create HomeScreen widget file (lib/screens/home_screen.dart) and register route in main.dart
   - [✅​] Add AppShell usage: wrap page content with AppShell so header/footer appear
   - [✅​] Implement hero section (image, title, CTA) and declare hero asset in pubspec.yaml
   - [❌] Implement ProductCard widget and show a static list/grid of preview cards
