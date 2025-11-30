@@ -32,13 +32,13 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [❌] Write one widget test verifying hero and at least one ProductCard render
   - [❌] Manual QA: test in Chrome mobile emulation and desktop widths
 
-- [❌] About Us Page
+- [✅] About Us Page
   - [✅​] Create AboutUs widget (lib/about_us.dart) and route
   - [✅​] Wrap content with AppShell so header/footer appear
   - [✅​] Add title ("about us") and body paragraph(s)
   - [✅​] Add a placeholder image or icon and semantic labels for accessibility
   - [✅​] Add a simple back/navigation button
-  - [❌] Add one widget test asserting the title and a paragraph exist
+  - [✅] Add one widget test asserting the title and a paragraph exist
 
 - [✅​] Footer
   - [✅​] Implement Footer widget (lib/widgets/footer.dart)
