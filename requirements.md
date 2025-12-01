@@ -88,6 +88,7 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [❌] Wire menu items to the routes for Home, Collections, About, Sale
   - [✅] Ensure header is included via AppShell so it's present on all pages
   - [❌] Add accessibility semantics and a widget test for menu open/close
+  - [✅] Add slider panel for shop features - Sale, Collections, Products
 
 ### 3.2 Intermediate Features (35%) — decomposed tasks
 

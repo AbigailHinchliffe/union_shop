@@ -55,28 +55,28 @@ class CollectionsScreen extends StatelessWidget{
   List<Widget> _buildCollectionCards(BuildContext context) {
     final collections = <Collection>[
       const Collection(
-        id: 'portsuni',
-        title: 'Portsmouth University Jersey',
-        thumbnail: 'assets/images/portsunijersey.jpg',
-        description: 'Official Portsmouth University jersey, comfortable and bold.',
+        id: 'Graduation',
+        title: 'Graduation Collection',
+        thumbnail: 'placeholder',
+        description: 'Graduation Collection Essentials.',
       ),
       const Collection(
-        id: 'purpletee',
-        title: 'Purple tee',
-        thumbnail: 'assets/images/purpletshirt.jpg',
-        description: 'Soft purple t-shirt with university crest.',
+        id: 'Essentials',
+        title: 'Basic Essentials Collection',
+        thumbnail: 'placeholder',
+        description: 'Basic attire for Campus Life.',
       ),
       const Collection(
-        id: 'blackjoggers',
-        title: 'Black Joggers',
-        thumbnail: 'assets/images/blackjoggers.jpg',
-        description: 'Comfortable black joggers for everyday wear.',
+        id: 'Sports',
+        title: 'Varsity Collection',
+        thumbnail: '',
+        description: 'Collection for everyday Varsity gear to represent the Uni.',
       ),
       const Collection(
-        id: 'whitebeanie',
-        title: 'White beanie',
-        thumbnail: 'assets/images/whitebeanie.jpg',
-        description: 'Warm white beanie with embroidered logo.',
+        id: 'Custom',
+        title: 'Customisable Merchandise',
+        thumbnail: '',
+        description: 'Customisable Merchandise for everyday essentials.',
       ),
     ];
 
