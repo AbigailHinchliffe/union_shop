@@ -57,25 +57,25 @@ class CollectionsScreen extends StatelessWidget{
       const Collection(
         id: 'Graduation',
         title: 'Graduation Collection',
-        thumbnail: 'placeholder',
+        thumbnail: 'assets/images/gradcap.jpg',
         description: 'Graduation Collection Essentials.',
       ),
       const Collection(
         id: 'Essentials',
         title: 'Basic Essentials Collection',
-        thumbnail: 'placeholder',
+        thumbnail: 'assets/images/purpletshirt.jpg',
         description: 'Basic attire for Campus Life.',
       ),
       const Collection(
         id: 'Sports',
         title: 'Varsity Collection',
-        thumbnail: '',
+        thumbnail: 'assets/images/portsunijersey.jpg',
         description: 'Collection for everyday Varsity gear to represent the Uni.',
       ),
       const Collection(
         id: 'Custom',
         title: 'Customisable Merchandise',
-        thumbnail: '',
+        thumbnail: 'assets/images/customhoodie.jpg',
         description: 'Customisable Merchandise for everyday essentials.',
       ),
     ];

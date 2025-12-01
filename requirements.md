@@ -50,7 +50,7 @@ The project will be demonstrated live and submitted as a GitHub repository link 
 - [❌] Collections Page
   - [✅] Create CollectionsScreen and route (lib/screens/collections_screen.dart)
   - [✅] Define a Collection model with id, title, thumbnail, description
-  - [❌] Render a list/grid of collection cards using static sample data
+  - [✅] Render a list/grid of collection cards using static sample data
   - [❌] Add a UI-only filter/search input (no backend required)
   - [❌] Ensure the layout adapts responsively (cards per row vary by width)
   - [❌] Add a widget test verifying the expected number of collection cards render
@@ -83,7 +83,7 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [❌] Add unit tests for validation logic and a widget test for the form
 
 - [❌] Navbar (desktop + collapsed mobile menu)
-  - [❌] Implement AppHeader with desktop layout (inline links) and mobile collapse
+  - [✅] Implement AppHeader with desktop layout (inline links) and mobile collapse
   - [✅] Add menu icon that opens a dropdown/sliding panel
   - [❌] Wire menu items to the routes for Home, Collections, About, Sale
   - [✅] Ensure header is included via AppShell so it's present on all pages

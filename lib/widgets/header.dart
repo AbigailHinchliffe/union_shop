@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/about_us.dart';
+import 'package:union_shop/main.dart';
+import 'package:union_shop/screens/collections_screen.dart';
+import 'package:union_shop/product_page.dart';
 import 'dropdown_menu.dart';
 
 class AppHeader extends StatelessWidget{
@@ -7,6 +11,8 @@ class AppHeader extends StatelessWidget{
   @override
   Widget build (BuildContext context){
     void placeholderCallbackForButtons() {}
+    final isMobile = MediaQuery.of(context).size.width < 768;
+    
     return Container(
       height: 100,
       color: Colors.white,
@@ -31,7 +37,10 @@ class AppHeader extends StatelessWidget{
               children: [
                 GestureDetector(
                   onTap: () {
-                    //navigateToHome(context);
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const HomeScreen()),
+                    );
                   },
                   child: Image.network(
                     'https://shop.upsu.net/cdn/shop/files/upsu_300x300.png?v=1614735854',
@@ -50,6 +59,31 @@ class AppHeader extends StatelessWidget{
                     },
                   ),
                 ),
+                const Spacer(),
+                // Desktop: centered nav links
+                if (!isMobile) ...[
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const HomeScreen()),
+                      );
+                    },
+                    child: const Text('Home', style: TextStyle(fontSize: 16, color: Colors.black87)),
+                  ),
+                  const SizedBox(width: 16),
+                  _buildShopMenu(context),
+                  const SizedBox(width: 16),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const AboutUs()),
+                      );
+                    },
+                    child: const Text('About', style: TextStyle(fontSize: 16, color: Colors.black87)),
+                  ),
+                ],
                 const Spacer(),
                 ConstrainedBox(
                   constraints: const BoxConstraints(maxWidth: 600),
@@ -95,20 +129,7 @@ class AppHeader extends StatelessWidget{
                         ),
                         onPressed: placeholderCallbackForButtons,
                       ),
-                      //                      IconButton(
-                      //                        icon: const Icon(
-                      //                          Icons.menu,
-                      //                          size: 18,
-                      //                          color: Colors.grey,
-                      //                        ),
-                      //                        padding: const EdgeInsets.all(8),
-                      //                        constraints: const BoxConstraints(
-                      //                          minWidth: 32,
-                      //                          minHeight: 32,
-                      //                        ),
-                      //                        onPressed: placeholderCallbackForButtons,
-                      //                      ),
-                      const DropDown(),
+                      if (isMobile) const DropDown(),
                     ],
                   ),
                 ),
@@ -119,5 +140,53 @@ class AppHeader extends StatelessWidget{
       ],
     ),
   );
+  }
+
+  Widget _buildShopMenu(BuildContext context) {
+    return PopupMenuButton<String>(
+      child: const Row(
+        children: [
+          Text('Shop', style: TextStyle(fontSize: 16, color: Colors.black87)),
+          SizedBox(width: 4),
+          Icon(Icons.arrow_drop_down, size: 20, color: Colors.black87),
+        ],
+      ),
+      onSelected: (value) {
+        switch (value) {
+          case 'collections':
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CollectionsScreen()),
+            );
+            break;
+          case 'products':
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProductPage()),
+            );
+            break;
+          case 'sale':
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const ProductPage()),
+            );
+            break;
+        }
+      },
+      itemBuilder: (context) => [
+        const PopupMenuItem(
+          value: 'collections',
+          child: Text('Collections'),
+        ),
+        const PopupMenuItem(
+          value: 'products',
+          child: Text('Products'),
+        ),
+        const PopupMenuItem(
+          value: 'sale',
+          child: Text('Sale'),
+        ),
+      ],
+    );
   }
 }
