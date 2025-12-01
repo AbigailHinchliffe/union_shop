@@ -84,9 +84,9 @@ The project will be demonstrated live and submitted as a GitHub repository link 
 
 - [❌] Navbar (desktop + collapsed mobile menu)
   - [❌] Implement AppHeader with desktop layout (inline links) and mobile collapse
-  - [❌] Add menu icon that opens a dropdown/sliding panel
+  - [✅] Add menu icon that opens a dropdown/sliding panel
   - [❌] Wire menu items to the routes for Home, Collections, About, Sale
-  - [❌] Ensure header is included via AppShell so it's present on all pages
+  - [✅] Ensure header is included via AppShell so it's present on all pages
   - [❌] Add accessibility semantics and a widget test for menu open/close
 
 ### 3.2 Intermediate Features (35%) — decomposed tasks

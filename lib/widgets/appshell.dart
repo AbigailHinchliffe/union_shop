@@ -12,7 +12,7 @@ class Appshell extends StatelessWidget{
       body: Column( 
         children: [
           const AppHeader(),
-          Expanded(child:body),
+          Expanded(child: body),
           const Footer(),
           ],
         ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart'; 
 import 'package:union_shop/about_us.dart';
 import 'package:union_shop/main.dart';
+import 'package:union_shop/screens/collections_screen.dart';
 
 class DropDown extends StatefulWidget {
   const DropDown({super.key});
@@ -13,6 +14,7 @@ class _DropDownState extends State<DropDown> {
   final GlobalKey _buttonKey = GlobalKey();
   OverlayEntry? _entry;
   bool _isOpen = false;
+  bool _inShopSubmenu = false;
 
   void _open() {
     if (_isOpen) return; 
@@ -24,14 +26,14 @@ class _DropDownState extends State<DropDown> {
 
     _entry = OverlayEntry(builder: (ctx) {
       final screenHeight = MediaQuery.of(ctx).size.height;
-      final safeBottom = MediaQuery.of(ctx).padding.bottom; 
+      final safeBottom = MediaQuery.of(ctx).padding.bottom;
       final availableHeight = (screenHeight - (buttonPos.dy + buttonSize.height) - safeBottom - 20)
-          .clamp(120.0, screenHeight); 
+          .clamp(120.0, screenHeight);
 
       return Positioned.fill(
         child: GestureDetector(
           behavior: HitTestBehavior.opaque,
-          onTap: _close, 
+          onTap: _close,
           child: SafeArea(
             child: Column(
               children: [
@@ -42,31 +44,8 @@ class _DropDownState extends State<DropDown> {
                   ),
                   child: Material(
                     color: Colors.white,
-                    elevation: 8, 
-                    child: ListView(
-                      shrinkWrap: true, 
-                      children: [
-                        ListTile(
-                          title: const Text('Home', style: TextStyle(fontSize: 18)),
-                          onTap: () {
-                            _close();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const HomeScreen()),//=> _select('home'),
-                        );
-                        const Divider(height: 1);}),
-                        ListTile(
-                          title: const Text('About', style: TextStyle(fontSize: 18)),
-                          onTap: () {
-                            _close();
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => const AboutUs()),
-                            );
-                          },
-                        ),
-                      ],
-                    ),
+                    elevation: 8,
+                    child: _inShopSubmenu ? _buildShopMenu(ctx) : _buildMainMenu(ctx),
                   ),
                 ),
               ],
@@ -78,6 +57,97 @@ class _DropDownState extends State<DropDown> {
 
     overlay.insert(_entry!);
     setState(() => _isOpen = true);
+  }
+
+  Widget _buildMainMenu(BuildContext ctx) {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        ListTile(
+          title: const Text('Home', style: TextStyle(fontSize: 18)),
+          onTap: () {
+            _close();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+            );
+          },
+        ),
+        const Divider(height: 1),
+        ListTile(
+          title: const Text('Shop', style: TextStyle(fontSize: 18)),
+          onTap: () {
+            setState(() => _inShopSubmenu = true);
+            _entry?.markNeedsBuild();
+          },
+        ),
+        const Divider(height: 1),
+        ListTile(
+          title: const Text('About', style: TextStyle(fontSize: 18)),
+          onTap: () {
+            _close();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const AboutUs()),
+            );
+          },
+        ),
+      ],
+    );
+  }
+
+  Widget _buildShopMenu(BuildContext ctx) {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        Row(
+          children: [
+            IconButton(
+              icon: const Icon(Icons.arrow_back),
+              onPressed: () {
+                setState(() => _inShopSubmenu = false);
+                _entry?.markNeedsBuild();
+              },
+            ),
+            const SizedBox(width: 8),
+            const Text('Shop', style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600)),
+          ],
+        ),
+        const Divider(height: 1),
+        ListTile(
+          title: const Text('Collections', style: TextStyle(fontSize: 18)),
+          onTap: () {
+            _close();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const CollectionsScreen()),
+            );
+          },
+        ),
+        const Divider(height: 1),
+        ListTile(
+          title: const Text('Products', style: TextStyle(fontSize: 18)),
+          onTap: () {
+            _close();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Placeholder()),
+            );
+          },
+        ),
+        const Divider(height: 1),
+        ListTile(
+          title: const Text('Sale', style: TextStyle(fontSize: 18)),
+          onTap: () {
+            _close();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Placeholder())
+            );
+          },
+        ),
+      ],
+    );
   }
 
   void _close() {
