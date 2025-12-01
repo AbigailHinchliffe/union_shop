@@ -2,6 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/appshell.dart';
 import 'package:union_shop/main.dart';
 
+class Collection {
+  final String id;
+  final String title;
+  final String thumbnail;
+  final String description;
+
+  const Collection({
+    required this.id,
+    required this.title,
+    required this.thumbnail,
+    required this.description,
+  });
+}
+
 class CollectionsScreen extends StatelessWidget{
   const CollectionsScreen({super.key});
 
@@ -28,28 +42,7 @@ class CollectionsScreen extends StatelessWidget{
                   crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
                   crossAxisSpacing: 24,
                   mainAxisSpacing: 48,
-                  children: const [
-                    ProductCard(
-                      title: 'Portsmouth University Jersey',
-                      price: '£25.00',
-                      imageUrl: 'assets/images/portsunijersey.jpg',
-                    ),
-                    ProductCard(
-                      title: 'Purple tee',
-                      price: '£12.00',
-                      imageUrl: 'assets/images/purpletshirt.jpg',
-                    ),
-                    ProductCard(
-                      title: 'Black Joggers',
-                      price: '£18.00',
-                      imageUrl: 'assets/images/blackjoggers.jpg',
-                    ),
-                    ProductCard(
-                      title: 'White beanie',
-                      price: '£8.00',
-                      imageUrl: 'assets/images/whitebeanie.jpg',
-                    ),
-                  ],
+                  children: _buildCollectionCards(context),
                 ),
               ),
             ],
@@ -57,5 +50,42 @@ class CollectionsScreen extends StatelessWidget{
         ),
       ),
     );
+  }
+
+  List<Widget> _buildCollectionCards(BuildContext context) {
+    final collections = <Collection>[
+      const Collection(
+        id: 'portsuni',
+        title: 'Portsmouth University Jersey',
+        thumbnail: 'assets/images/portsunijersey.jpg',
+        description: 'Official Portsmouth University jersey, comfortable and bold.',
+      ),
+      const Collection(
+        id: 'purpletee',
+        title: 'Purple tee',
+        thumbnail: 'assets/images/purpletshirt.jpg',
+        description: 'Soft purple t-shirt with university crest.',
+      ),
+      const Collection(
+        id: 'blackjoggers',
+        title: 'Black Joggers',
+        thumbnail: 'assets/images/blackjoggers.jpg',
+        description: 'Comfortable black joggers for everyday wear.',
+      ),
+      const Collection(
+        id: 'whitebeanie',
+        title: 'White beanie',
+        thumbnail: 'assets/images/whitebeanie.jpg',
+        description: 'Warm white beanie with embroidered logo.',
+      ),
+    ];
+
+    return collections.map((c) {
+      return ProductCard(
+        title: c.title,
+        price: '', // no price on collection overview; keep empty or add a field later
+        imageUrl: c.thumbnail,
+      );
+    }).toList();
   }
 }
