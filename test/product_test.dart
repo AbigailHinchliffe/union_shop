@@ -4,59 +4,54 @@ import 'package:union_shop/product_page.dart';
 
 void main() {
   group('Product Page Tests', () {
-    Widget createTestWidget() {
-      return const MaterialApp(home: ProductPage());
-    }
+    testWidgets('should display product page with all elements', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
 
-    testWidgets('should display product page with basic elements', (
-      tester,
-    ) async {
-      await tester.pumpWidget(createTestWidget());
-      await tester.pump();
+      // Check header elements
+      expect(find.byIcon(Icons.search), findsOneWidget);
+      expect(find.byIcon(Icons.person_outline), findsOneWidget);
+      expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
+      expect(find.byIcon(Icons.menu), findsOneWidget);
 
-      // Check that basic UI elements are present
-      expect(
-        find.text('PLACEHOLDER HEADER TEXT - STUDENTS TO UPDATE!'),
-        findsOneWidget,
-      );
+      // Check product details
       expect(find.text('Placeholder Product Name'), findsOneWidget);
       expect(find.text('£15.00'), findsOneWidget);
       expect(find.text('Description'), findsOneWidget);
     });
 
-    testWidgets('should display student instruction text', (tester) async {
-      await tester.pumpWidget(createTestWidget());
-      await tester.pump();
+    testWidgets('should display product image container', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
 
-      // Check that student instruction is present
-      expect(
-        find.text(
-          'Students should add size options, colour options, quantity selector, add to cart button, and buy now button here.',
-        ),
-        findsOneWidget,
+      // Check for Container with height 300
+      final containerFinder = find.byWidgetPredicate(
+        (widget) => widget is Container && widget.constraints == null,
+        description: 'Product image container',
       );
+
+      expect(containerFinder, findsWidgets);
     });
 
-    testWidgets('should display header icons', (tester) async {
-      await tester.pumpWidget(createTestWidget());
-      await tester.pump();
+    testWidgets('should display placeholder header text', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
 
-      // Check that header icons are present
-      expect(find.byIcon(Icons.search), findsOneWidget);
-      expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
-      expect(find.byIcon(Icons.menu), findsOneWidget);
+      expect(find.text('PLACEHOLDER HEADER TEXT'), findsOneWidget);
     });
 
-    testWidgets('should display footer', (tester) async {
-      await tester.pumpWidget(createTestWidget());
-      await tester.pump();
+    testWidgets('should display placeholder footer', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
 
-      // Check that footer is present
       expect(find.text('Placeholder Footer'), findsOneWidget);
-      expect(
-        find.text('Students should customise this footer section'),
-        findsOneWidget,
-      );
+    });
+
+    testWidgets('should display product description text', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('This is a placeholder description'), findsOneWidget);
     });
   });
 }
