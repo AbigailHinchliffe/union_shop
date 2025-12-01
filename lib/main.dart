@@ -4,7 +4,7 @@ import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/about_us.dart';
 import 'package:union_shop/screens/collections_screen.dart';
-
+import 'package:union_shop/widgets/hero_carousel.dart';
 
 void main() {
   runApp(const UnionShopApp());
@@ -23,9 +23,7 @@ class UnionShopApp extends StatelessWidget {
       ),
       home: const HomeScreen(),
       initialRoute: '/',
-      // In your browser, try this link: http://localhost:49856/#/product
       routes: {
-        //'/home': (context) => const HomeScreen(),
         '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUs(),
         '/collections': (context) => const CollectionsScreen(),
@@ -45,9 +43,7 @@ class HomeScreen extends StatelessWidget {
     Navigator.pushNamed(context, '/product');
   }
 
-  void placeholderCallbackForButtons() {
-    // This is the event handler for buttons that don't work yet
-  }
+  void placeholderCallbackForButtons() {}
 
   @override
   Widget build(BuildContext context) {
@@ -57,78 +53,8 @@ class HomeScreen extends StatelessWidget {
           children: [
             const AppHeader(),
 
-            // Hero Section
-            SizedBox(
-              height: 400,
-              width: double.infinity,
-              child: Stack(
-                children: [
-                  // Background image
-                  Positioned.fill(
-                    child: Container(
-                      decoration: const BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            'assets/images/customhoodie.jpg',
-                          ),
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 0.7),
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Content overlay
-                  Positioned(
-                    left: 24,
-                    right: 24,
-                    top: 80,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Placeholder Hero Title',
-                          style: TextStyle(
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.white,
-                            height: 1.2,
-                          ),
-                        ),
-                        const SizedBox(height: 16),
-                        const Text(
-                          "This is placeholder text for the hero section.",
-                          style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                            height: 1.5,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                        const SizedBox(height: 32),
-                        ElevatedButton(
-                          onPressed: placeholderCallbackForButtons,
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xFF4d2963),
-                            foregroundColor: Colors.white,
-                            shape: const RoundedRectangleBorder(
-                              borderRadius: BorderRadius.zero,
-                            ),
-                          ),
-                          child: const Text(
-                            'BROWSE PRODUCTS',
-                            style: TextStyle(fontSize: 14, letterSpacing: 1),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            // Hero Carousel Section
+            const HeroCarousel(),
 
             // Products Section
             Container(
@@ -157,26 +83,22 @@ class HomeScreen extends StatelessWidget {
                         ProductCard(
                           title: 'Portsmouth University Jersey',
                           price: '£25.00',
-                          imageUrl:
-                              'assets/images/portsunijersey.jpg',
+                          imageUrl: 'assets/images/portsunijersey.jpg',
                         ),
                         ProductCard(
                           title: 'Purple tee',
                           price: '£12.00',
-                          imageUrl:
-                              'assets/images/purpletshirt.jpg',
+                          imageUrl: 'assets/images/purpletshirt.jpg',
                         ),
                         ProductCard(
                           title: 'Black Joggers',
                           price: '£18.00',
-                          imageUrl:
-                              'assets/images/blackjoggers.jpg',
+                          imageUrl: 'assets/images/blackjoggers.jpg',
                         ),
                         ProductCard(
                           title: 'White beanie',
                           price: '£8.00',
-                          imageUrl:
-                              'assets/images/whitebeanie.jpg',
+                          imageUrl: 'assets/images/whitebeanie.jpg',
                         ),
                       ],
                     ),
@@ -191,6 +113,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
 
 class ProductCard extends StatelessWidget {
   final String title;
