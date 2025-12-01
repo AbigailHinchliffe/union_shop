@@ -15,7 +15,7 @@ class CollectionsScreen extends StatelessWidget{
           child: Column(
             children: [
               const Text(
-                'PRODUCTS SECTION',
+                'COLLECTIONS',
                 style: TextStyle(
                   fontSize: 20,
                   color: Colors.black,
@@ -23,34 +23,34 @@ class CollectionsScreen extends StatelessWidget{
                 ),
               ),
               const SizedBox(height: 48),
-              GridView.count(
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
-                crossAxisSpacing: 24,
-                mainAxisSpacing: 48,
-                children: const [
-                  ProductCard(
-                    title: 'Portsmouth University Jersey',
-                    price: '£25.00',
-                    imageUrl: 'assets/images/portsunijersey.jpg',
-                  ),
-                  ProductCard(
-                    title: 'Purple tee',
-                    price: '£12.00',
-                    imageUrl: 'assets/images/purpletshirt.jpg',
-                  ),
-                  ProductCard(
-                    title: 'Black Joggers',
-                    price: '£18.00',
-                    imageUrl: 'assets/images/blackjoggers.jpg',
-                  ),
-                  ProductCard(
-                    title: 'White beanie',
-                    price: '£8.00',
-                    imageUrl: 'assets/images/whitebeanie.jpg',
-                  ),
-                ],
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                  crossAxisSpacing: 24,
+                  mainAxisSpacing: 48,
+                  children: const [
+                    ProductCard(
+                      title: 'Portsmouth University Jersey',
+                      price: '£25.00',
+                      imageUrl: 'assets/images/portsunijersey.jpg',
+                    ),
+                    ProductCard(
+                      title: 'Purple tee',
+                      price: '£12.00',
+                      imageUrl: 'assets/images/purpletshirt.jpg',
+                    ),
+                    ProductCard(
+                      title: 'Black Joggers',
+                      price: '£18.00',
+                      imageUrl: 'assets/images/blackjoggers.jpg',
+                    ),
+                    ProductCard(
+                      title: 'White beanie',
+                      price: '£8.00',
+                      imageUrl: 'assets/images/whitebeanie.jpg',
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
