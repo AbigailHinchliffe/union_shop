@@ -32,18 +32,17 @@ class CollectionsScreen extends StatelessWidget{
                 'COLLECTIONS',
                 style: TextStyle(
                   fontSize: 20,
-                  color: Colors.black,
                   letterSpacing: 1,
                 ),
               ),
               const SizedBox(height: 48),
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
-                  crossAxisSpacing: 24,
-                  mainAxisSpacing: 48,
-                  children: _buildCollectionCards(context),
-                ),
+              GridView.count(
+                shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
+                crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                crossAxisSpacing: 24,
+                mainAxisSpacing: 48,
+                children: _buildCollectionCards(context),
               ),
             ],
           ),
@@ -83,7 +82,7 @@ class CollectionsScreen extends StatelessWidget{
     return collections.map((c) {
       return ProductCard(
         title: c.title,
-        price: '', // no price on collection overview; keep empty or add a field later
+        price: '',
         imageUrl: c.thumbnail,
       );
     }).toList();
