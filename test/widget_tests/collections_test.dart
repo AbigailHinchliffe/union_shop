@@ -57,10 +57,10 @@ void main() {
       tester.view.physicalSize = const Size(400, 800);
       tester.view.devicePixelRatio = 1.0;
       
-      addTearDown(() async {
+      addTearDown(() {
         tester.view.resetPhysicalSize();
+      });
 
-      
       FlutterError.onError = (FlutterErrorDetails details) {
         if (!details.toString().contains('overflowed')) {
           FlutterError.presentError(details);
@@ -81,30 +81,29 @@ void main() {
       final gridView = tester.widget<GridView>(gridViewFinder);
       final gridDelegate = gridView.gridDelegate as SliverGridDelegateWithFixedCrossAxisCount;
       
-  
       expect(gridDelegate.crossAxisCount, equals(1));
     });
 
     testWidgets('grid shows 2 columns on wide screen', (WidgetTester tester) async {
+      tester.view.physicalSize = const Size(1200, 800);
+      tester.view.devicePixelRatio = 1.0;
+
+      addTearDown(() {
+        tester.view.resetPhysicalSize();
+      });
+
       await tester.pumpWidget(
         const MaterialApp(
           home: CollectionsScreen(),
         ),
       );
 
-  
-      tester.view.physicalSize = const Size(1200, 800);
-      tester.view.devicePixelRatio = 1.0;
-
       await tester.pumpAndSettle();
 
       final gridView = tester.widget<GridView>(find.byType(GridView));
       final gridDelegate = gridView.gridDelegate as SliverGridDelegateWithFixedCrossAxisCount;
       
-    
       expect(gridDelegate.crossAxisCount, equals(2));
-
-      addTearDown(() => tester.view.resetPhysicalSize());
     });
 
     testWidgets('has correct spacing between grid items', (WidgetTester tester) async {
@@ -267,4 +266,4 @@ void main() {
       expect(foundCorrectPadding, isTrue);
     });
   });
-});}
+}
