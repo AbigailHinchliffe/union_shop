@@ -48,7 +48,7 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅] Test that the footer renders & exists
 
 - [❌] Collections Page
-  - [❌] Create CollectionsScreen and route (lib/screens/collections_screen.dart)
+  - [✅] Create CollectionsScreen and route (lib/screens/collections_screen.dart)
   - [❌] Define a Collection model with id, title, thumbnail, description
   - [❌] Render a list/grid of collection cards using static sample data
   - [❌] Add a UI-only filter/search input (no backend required)
