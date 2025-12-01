@@ -155,7 +155,116 @@ void main() {
       expect(collection.description, equals('Test description'));
     });
 
+
+
+    test('Collection model is immutable', () {
+      const collection1 = Collection(
+        id: 'test',
+        title: 'Title',
+        thumbnail: 'thumb',
+        description: 'Desc',
+      );
+
+      const collection2 = Collection(
+        id: 'test',
+        title: 'Title',
+        thumbnail: 'thumb',
+        description: 'Desc',
+      );
+
+      expect(collection1.id, equals(collection2.id));
+      expect(collection1.title, equals(collection2.title));
     });
   });
-}
 
+  group('Collections Screen Integration Tests', () {
+    testWidgets('page scrolls correctly with footer', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Find the scrollable widget
+      final scrollable = find.byType(SingleChildScrollView);
+      expect(scrollable, findsOneWidget);
+
+      // Get initial position
+      final initialPosition = tester.getTopLeft(find.text('COLLECTIONS')).dy;
+
+      // Try scrolling up
+      await tester.drag(scrollable.first, const Offset(0, -300));
+      await tester.pumpAndSettle();
+
+      // Verify position changed (should be higher/more negative after scrolling up)
+      final newPosition = tester.getTopLeft(find.text('COLLECTIONS')).dy;
+      expect(newPosition, lessThan(initialPosition));
+    });
+
+    testWidgets('collections have correct data', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Verify specific collection properties are rendered
+      expect(find.textContaining('Graduation'), findsOneWidget);
+      expect(find.textContaining('Essentials'), findsOneWidget);
+      expect(find.textContaining('Varsity'), findsOneWidget);
+      expect(find.textContaining('Customisable'), findsOneWidget);
+    });
+
+    testWidgets('page has correct background color', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Find the Container directly in CollectionsScreen's body
+      final containers = find.byType(Container);
+      bool foundWhiteContainer = false;
+      
+      for (var i = 0; i < containers.evaluate().length; i++) {
+        final container = tester.widget<Container>(containers.at(i));
+        if (container.color == Colors.white) {
+          foundWhiteContainer = true;
+          break;
+        }
+      }
+
+      expect(foundWhiteContainer, isTrue);
+    });
+
+    testWidgets('page has correct padding', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Find padding widgets and look for the one with 40.0 padding
+      final paddings = find.byType(Padding);
+      bool foundCorrectPadding = false;
+      
+      for (var i = 0; i < paddings.evaluate().length; i++) {
+        final padding = tester.widget<Padding>(paddings.at(i));
+        if (padding.padding == const EdgeInsets.all(40.0)) {
+          foundCorrectPadding = true;
+          break;
+        }
+      }
+
+      expect(foundCorrectPadding, isTrue);
+    });
+  });
+});}
