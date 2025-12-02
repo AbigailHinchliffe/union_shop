@@ -124,6 +124,7 @@ void main() {
         final decoration = container.decoration as BoxDecoration?;
         if (decoration?.color != null) {
           final color = decoration!.color!;
+          // ignore: deprecated_member_use
           return color.alpha > 0 && color.alpha < 255; // Semi-transparent
         }
         return false;
