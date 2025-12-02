@@ -88,5 +88,79 @@ void main() {
       expect(find.byType(Image), findsWidgets); // Header logo
       expect(find.text('COLLECTIONS'), findsOneWidget); // Page title
     });
+
+    testWidgets('navigates to collection detail page and shows correct title', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Tap on Graduation Collection
+      await tester.tap(find.text('Graduation Collection'));
+      await tester.pumpAndSettle();
+
+      // Verify navigation occurred and title is displayed
+      expect(find.text('GRADUATION COLLECTION'), findsOneWidget);
+      expect(find.text('Back to Collections'), findsOneWidget);
+    });
+
+    testWidgets('collection cards have proper styling with dark overlay', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Find containers with dark overlay
+      final containers = tester.widgetList<Container>(find.byType(Container));
+      
+      // Check that at least one container has a dark overlay (black with opacity)
+      final hasOverlay = containers.any((container) {
+        final decoration = container.decoration as BoxDecoration?;
+        if (decoration?.color != null) {
+          final color = decoration!.color!;
+          return color.alpha > 0 && color.alpha < 255; // Semi-transparent
+        }
+        return false;
+      });
+      
+      expect(hasOverlay, isTrue);
+    });
+
+    testWidgets('all collection titles are centered and visible', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      final collections = [
+        'Graduation Collection',
+        'Basic Essentials Collection',
+        'Varsity Collection',
+        'Customisable Merchandise',
+        'Pride Collection',
+        'Sale Collection',
+      ];
+
+      // Verify each collection title is visible and styled correctly
+      for (final collection in collections) {
+        final textFinder = find.text(collection);
+        expect(textFinder, findsOneWidget);
+        
+        // Get the Text widget and verify it has proper styling
+        final textWidget = tester.widget<Text>(textFinder);
+        expect(textWidget.style?.color, Colors.white);
+        expect(textWidget.style?.fontWeight, FontWeight.bold);
+        expect(textWidget.textAlign, TextAlign.center);
+      }
+    });
   });
 }
