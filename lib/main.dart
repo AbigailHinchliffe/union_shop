@@ -4,6 +4,7 @@ import 'package:union_shop/widgets/header.dart';
 import 'package:union_shop/widgets/footer.dart';
 import 'package:union_shop/about_us.dart';
 import 'package:union_shop/screens/collections_screen.dart';
+import 'package:union_shop/screens/collection_detail.dart';
 import 'package:union_shop/widgets/hero_carousel.dart';
 
 void main() {
@@ -27,6 +28,10 @@ class UnionShopApp extends StatelessWidget {
         '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUs(),
         '/collections': (context) => const CollectionsScreen(),
+        '/essentials': (context) => const CollectionDetailScreen(
+              collectionId: 'Essentials',
+              collectionTitle: 'Basic Essentials Collection',
+            ),
       },
     );
   }

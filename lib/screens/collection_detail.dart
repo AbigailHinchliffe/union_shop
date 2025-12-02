@@ -51,6 +51,18 @@ class CollectionDetailScreen extends StatelessWidget {
                     _buildProductCard('Diploma Frame', 'assets/images/photoframe.jpg'),
                   ],
                 ),
+              if (collectionId == 'Essentials')
+                GridView.count(
+                  shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    crossAxisCount: 2,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                    children: [
+                      _buildProductCard('Purple T-Shirt', 'assets/images/purpletshirt.jpg'),
+                      _buildProductCard('White Beanie', 'assets/images/whitebeanie.jpg'),
+                    ],
+                ),
             ],
           ),
         ),
