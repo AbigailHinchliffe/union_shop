@@ -39,7 +39,27 @@ void main() {
 
       await tester.pumpAndSettle();
       expect(find.byType(GridView), findsOneWidget);
-      expect(find.byType(ProductCard), findsNWidgets(4));
+    });
+
+    testWidgets('renders expected number of collection cards', (WidgetTester tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+      
+      // Verify all 6 collections are rendered
+      expect(find.byType(ProductCard), findsNWidgets(6));
+      
+      // Verify specific collection titles
+      expect(find.text('Graduation Collection'), findsOneWidget);
+      expect(find.text('Basic Essentials Collection'), findsOneWidget);
+      expect(find.text('Varsity Collection'), findsOneWidget);
+      expect(find.text('Customisable Merchandise'), findsOneWidget);
+      expect(find.text('Pride Collection'), findsOneWidget);
+      expect(find.text('Sale Collection'), findsOneWidget);
     });
 
     testWidgets('uses Appshell wrapper', (WidgetTester tester) async {
