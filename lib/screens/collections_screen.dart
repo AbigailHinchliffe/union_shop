@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/appshell.dart';
+import 'package:union_shop/screens/collection_detail_screen.dart';
 
 class Collection {
   final String id;
@@ -94,6 +95,12 @@ class CollectionsScreen extends StatelessWidget {
     return collections.map((c) {
       return GestureDetector(
         onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Placeholder(),
+            ),
+          );
         },
         child: Container(
           decoration: BoxDecoration(

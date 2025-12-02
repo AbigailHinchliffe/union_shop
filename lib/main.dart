@@ -52,8 +52,6 @@ class HomeScreen extends StatelessWidget {
         child: Column(
           children: [
             const AppHeader(),
-
-            // Hero Carousel Section
             const HeroCarousel(),
 
             // Products Section
@@ -114,57 +112,64 @@ class HomeScreen extends StatelessWidget {
   }
 }
 
-
 class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
+  final VoidCallback? onTap;
 
   const ProductCard({
     super.key,
     required this.title,
     required this.price,
     required this.imageUrl,
+    this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(context, '/product');
+      onTap: onTap ?? () {
+        Navigator.pushNamed(context, '/product', arguments: {'title': title, 'price': price, 'imageUrl': imageUrl});
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Expanded(
-            child: Image.asset(
-              imageUrl,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  color: Colors.grey[300],
-                  child: const Center(
-                    child: Icon(Icons.image_not_supported, color: Colors.grey),
-                  ),
-                );
-              },
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(8),
+                color: Colors.grey[200],
+              ),
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(8),
+                child: Image.asset(
+                  imageUrl,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      color: Colors.grey[300],
+                      child: const Center(
+                        child: Icon(Icons.image_not_supported, color: Colors.grey, size: 50),
+                      ),
+                    );
+                  },
+                ),
+              ),
             ),
           ),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const SizedBox(height: 4),
-              Text(
-                title,
-                style: const TextStyle(fontSize: 14, color: Colors.black),
-                maxLines: 2,
-              ),
-              const SizedBox(height: 4),
-              Text(
-                price,
-                style: const TextStyle(fontSize: 13, color: Colors.grey),
-              ),
-            ],
+          const SizedBox(height: 8),
+          Text(
+            title,
+            style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+            maxLines: 2,
+            overflow: TextOverflow.ellipsis,
+          ),
+          const SizedBox(height: 4),
+          Text(
+            price,
+            style: const TextStyle(fontSize: 14, color: Colors.black87),
           ),
         ],
       ),
