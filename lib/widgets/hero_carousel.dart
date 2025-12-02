@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
 class HeroSlide {
@@ -7,7 +8,8 @@ class HeroSlide {
 }
 
 class HeroCarousel extends StatefulWidget {
-  const HeroCarousel({super.key});
+  final bool enableAutoRotate;
+  const HeroCarousel({super.key, this.enableAutoRotate = true});
   @override
   State<HeroCarousel> createState() => _HeroCarouselState();
 }
@@ -25,11 +27,14 @@ class _HeroCarouselState extends State<HeroCarousel> {
   @override
   void initState() {
     super.initState();
-    Future.delayed(const Duration(seconds: 10), _autoRotate);
+    // Only start auto-rotation if enabled and not in test environment
+    if (widget.enableAutoRotate && !kIsWeb) {
+      Future.delayed(const Duration(seconds: 10), _autoRotate);
+    }
   }
 
   void _autoRotate() {
-    if (!mounted) return;
+    if (!mounted || !widget.enableAutoRotate) return;
     _controller.animateToPage((_page + 1) % _slides.length, duration: const Duration(milliseconds: 800), curve: Curves.easeInOut);
     Future.delayed(const Duration(seconds: 10), _autoRotate);
   }
@@ -54,7 +59,7 @@ class _HeroCarouselState extends State<HeroCarousel> {
               children: [
                 Positioned.fill(
                   child: Container(
-                    decoration: BoxDecoration(image: DecorationImage(image: NetworkImage(_slides[i].imageUrl), fit: BoxFit.cover)),
+                    decoration: BoxDecoration(image: DecorationImage(image: AssetImage(_slides[i].imageUrl), fit: BoxFit.cover)),
                     child: Container(color: Colors.black.withValues(alpha: 0.7)),
                   ),
                 ),
