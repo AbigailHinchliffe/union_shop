@@ -46,8 +46,9 @@ class CollectionDetailScreen extends StatelessWidget {
                   crossAxisSpacing: 16,
                   mainAxisSpacing: 16,
                   children: [
-                    _buildProductCard('Product 1', 'assets/images/gradcap.jpg'),
-                    _buildProductCard('Product 2', 'assets/images/purpletshirt.jpg'),
+                    _buildProductCard('Graduation Cap', 'assets/images/gradcap.jpg'),
+                    _buildProductCard('Graduation Robe', 'assets/images/gradrobe.webp'),
+                    _buildProductCard('Diploma Frame', 'assets/images/photoframe.jpg'),
                   ],
                 ),
             ],
