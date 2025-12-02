@@ -21,7 +21,7 @@ class _HeroCarouselState extends State<HeroCarousel> {
   final _slides = const [
     HeroSlide(title: 'Browse Our Products', description: 'Discover our wide range of university merchandise', buttonText: 'BROWSE ALL PRODUCTS', imageUrl: 'assets/images/customhoodie.jpg', route: '/product'),
     HeroSlide(title: 'Explore Collections', description: 'Shop by category and find exactly what you need', buttonText: 'BROWSE COLLECTIONS', imageUrl: 'assets/images/gradcap.jpg', route: '/collections'),
-    HeroSlide(title: 'Student Essentials', description: 'Everything you need for campus life', buttonText: 'SHOP NOW', imageUrl: 'assets/images/purpletshirt.jpg', route: null),
+    HeroSlide(title: 'Student Essentials', description: 'Everything you need for campus life', buttonText: 'SHOP NOW', imageUrl: 'assets/images/purpletshirt.jpg', route: '/essentials'),
   ];
 
   @override

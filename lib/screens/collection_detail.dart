@@ -61,6 +61,12 @@ class CollectionDetailScreen extends StatelessWidget {
                     children: [
                       _buildProductCard('Purple T-Shirt', 'assets/images/purpletshirt.jpg'),
                       _buildProductCard('White Beanie', 'assets/images/whitebeanie.jpg'),
+                      _buildProductCard('Basic White T-Shirt', 'assets/images/basictee.jpg'),
+                      _buildProductCard('Black Joggers', 'assets/images/blackjoggers.jpg'),
+                      _buildProductCard('Black Gloves', 'assets/images/blackgloves.jpg'),
+                      _buildProductCard('Black Hoodie', 'assets/images/blackhoodie.jpg'),
+                      _buildProductCard('Varsity Jersey', 'assets/images/portsunijersey.jpg'),
+                      _buildProductCard('Purple Hoodie', 'assets/images/purplehoodie.webp'),
                     ],
                 ),
             ],
