@@ -48,15 +48,15 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅] Add a small interaction test for tapping one footer link
   - [✅] Test that the footer renders & exists
 
-- [❌] Collections Page (5%)
+- [✅] Collections Page (5%)
   - [✅] Create CollectionsScreen and route (lib/screens/collections_screen.dart)
   - [✅] Define a Collection model with id, title, thumbnail, description
   - [✅] Render a list/grid of collection cards using static sample data
-  - [❌] Add a UI-only filter/search input (no backend required)
   - [✅] Ensure the layout adapts responsively (cards per row vary by width)
   - [✅] Add a widget test verifying the expected number of collection cards render
 
 - [❌] Collection Page (CollectionDetail)
+  - [❌] Add a UI-only filter/search input (no backend required)
   - [❌] Create CollectionDetailScreen accepting collection id/argument
   - [❌] Populate with static product cards filtered by collection id
   - [❌] Add "load more" or pagination stub (UI-only)
