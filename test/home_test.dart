@@ -152,5 +152,65 @@ void main() {
       final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
       expect(button.style?.backgroundColor?.resolve({}), const Color(0xFF4d2963));
     });
+
+    testWidgets('ProductCard is tappable and has gesture detector', (tester) async {
+      bool wasTapped = false;
+      
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: ProductCard(
+              title: 'Portsmouth University Jersey',
+              price: '£25.00',
+              imageUrl: 'assets/images/portsunijersey.jpg',
+              onTap: () => wasTapped = true,
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      // Find a product card by its title
+      final productCard = find.text('Portsmouth University Jersey');
+      expect(productCard, findsOneWidget);
+
+      // Verify it's in a GestureDetector
+      final gestureDetector = find.ancestor(
+        of: productCard,
+        matching: find.byType(GestureDetector),
+      );
+      expect(gestureDetector, findsOneWidget);
+
+      // Tap on the product card
+      await tester.tap(gestureDetector);
+      await tester.pump();
+
+      // Verify tap was registered
+      expect(wasTapped, isTrue);
+    });
+
+    testWidgets('ProductCard displays image, title, and price correctly', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: Scaffold(
+            body: ProductCard(
+              title: 'Purple T-Shirt',
+              price: '£12.00',
+              imageUrl: 'assets/images/purpletshirt.jpg',
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      // Verify all elements are present
+      expect(find.text('Purple T-Shirt'), findsOneWidget);
+      expect(find.text('£12.00'), findsOneWidget);
+      expect(find.byType(Image), findsOneWidget);
+
+      // Verify text styling
+      final titleText = tester.widget<Text>(find.text('Purple T-Shirt'));
+      expect(titleText.style?.fontWeight, FontWeight.w500);
+    });
   });
 }
