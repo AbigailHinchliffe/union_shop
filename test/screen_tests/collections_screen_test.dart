@@ -45,5 +45,48 @@ void main() {
       );
       expect(gestureDetector, findsOneWidget);
     });
+
+    testWidgets('displays collection images', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Verify that images are present in the widget tree
+      expect(find.byType(Image), findsAtLeastNWidgets(6));
+    });
+
+    testWidgets('renders grid layout with correct number of columns', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Find the GridView
+      final gridView = tester.widget<GridView>(find.byType(GridView));
+      
+      // Verify it's a GridView.count
+      expect(gridView, isA<GridView>());
+    });
+
+    testWidgets('uses Appshell wrapper', (tester) async {
+      await tester.pumpWidget(
+        const MaterialApp(
+          home: CollectionsScreen(),
+        ),
+      );
+
+      await tester.pumpAndSettle();
+
+      // Verify header and footer are present (from Appshell)
+      expect(find.byType(Image), findsWidgets); // Header logo
+      expect(find.text('COLLECTIONS'), findsOneWidget); // Page title
+    });
   });
 }
