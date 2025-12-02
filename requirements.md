@@ -55,11 +55,11 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅] Ensure the layout adapts responsively (cards per row vary by width)
   - [✅] Add a widget test verifying the expected number of collection cards render
 
-- [❌] Collection Page (CollectionDetail) (5%)
+- [✅] Collection Page (CollectionDetail) (5%)
   - [✅] Add a UI-only filter/search input (no backend required)
   - [✅] Create CollectionDetailScreen accepting collection id/argument
   - [✅] Populate with static product cards filtered by collection id
-  - [❌] Add "load more" or pagination stub (UI-only)
+  - [✅] Add "load more" or pagination stub (UI-only)
   - [✅] Add back-navigation and breadcrumb text
   - [✅] Add a widget test that navigates to a collection and verifies product list
 
