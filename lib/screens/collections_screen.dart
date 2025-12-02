@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/screens/collection_details.dart';
 import 'package:union_shop/widgets/appshell.dart';
-import 'package:union_shop/screens/collection_detail_screen.dart';
 
 class Collection {
   final String id;
@@ -98,7 +98,10 @@ class CollectionsScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => Placeholder(),
+              builder: (context) => CollectionDetailScreen(
+                collectionId: c.id,
+                collectionTitle: c.title,
+              ),
             ),
           );
         },
