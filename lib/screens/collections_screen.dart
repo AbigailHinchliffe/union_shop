@@ -129,6 +129,7 @@ class CollectionsScreen extends StatelessWidget {
                 child: Container(
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(8),
+                    // ignore: deprecated_member_use
                     color: Colors.black.withOpacity(0.4),
                   ),
                 ),
