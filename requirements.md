@@ -21,15 +21,15 @@ The project will be demonstrated live and submitted as a GitHub repository link 
 
 ### 3.1 Basic Features (40%)​
 
-- [❌] Static Homepage
+- [❌] Static Homepage (5%)
   - [✅​] Seperate out header from main file
   - [✅​] Add AppShell usage: wrap page content with AppShell so header/footer appear
   - [✅​] Implement hero section (image, title, CTA) and declare hero asset in pubspec.yaml
   - [✅] Implement ProductCard widget and show a static list/grid of preview cards
   - [✅] Add responsive layout rules (single column on narrow, grid on wide)
   - [❌] Add placeholder CTA actions (SnackBar or Navigator to placeholder route)
-  - [❌] Write one widget test verifying hero and at least one ProductCard render
-  - [❌] Manual QA: test in Chrome mobile emulation and desktop widths
+  - [✅] Write one widget test verifying hero and at least one ProductCard render
+  - [✅] Manual QA: test in Chrome mobile emulation and desktop widths
   - [✅] Add Carousel feature for homepage
 
 - [✅] About Us Page (5%)

@@ -77,6 +77,18 @@ class CollectionsScreen extends StatelessWidget{
         thumbnail: 'assets/images/customhoodie.jpg',
         description: 'Customisable Merchandise for everyday essentials.',
       ),
+      const Collection(
+        id: 'Pride',
+        title: 'Pride Collection',
+        thumbnail: '',
+        description: 'Celebrate diversity with our Pride Collection.',
+      ),
+      const Collection(
+        id: 'Sale',
+        title: 'Sale Collection',
+        thumbnail: '',
+        description: 'Our Sale Stock.',
+      ),
     ];
 
     return collections.map((c) {
