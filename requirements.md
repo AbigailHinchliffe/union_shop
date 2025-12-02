@@ -57,10 +57,10 @@ The project will be demonstrated live and submitted as a GitHub repository link 
 
 - [❌] Collection Page (CollectionDetail)
   - [❌] Add a UI-only filter/search input (no backend required)
-  - [❌] Create CollectionDetailScreen accepting collection id/argument
-  - [❌] Populate with static product cards filtered by collection id
+  - [✅] Create CollectionDetailScreen accepting collection id/argument
+  - [✅] Populate with static product cards filtered by collection id
   - [❌] Add "load more" or pagination stub (UI-only)
-  - [❌] Add back-navigation and breadcrumb text
+  - [✅] Add back-navigation and breadcrumb text
   - [❌] Add a widget test that navigates to a collection and verifies product list
 
 - [❌] Product Page
