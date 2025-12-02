@@ -15,7 +15,7 @@ class Collection {
   });
 }
 
-class CollectionsScreen extends StatelessWidget{
+class CollectionsScreen extends StatelessWidget {
   const CollectionsScreen({super.key});
 
   @override
@@ -101,7 +101,6 @@ class CollectionsScreen extends StatelessWidget{
           ),
           child: Stack(
             children: [
-              // Background image
               Positioned.fill(
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(8),
@@ -124,6 +123,21 @@ class CollectionsScreen extends StatelessWidget{
                             );
                           },
                         ),
+                ),
+              ),
+              Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: Text(
+                    c.title,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 24,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 0.5,
+                    ),
+                  ),
                 ),
               ),
             ],
