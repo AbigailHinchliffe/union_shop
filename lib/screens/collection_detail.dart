@@ -20,6 +20,11 @@ class CollectionDetailScreen extends StatelessWidget {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              TextButton.icon(
+                onPressed: () => Navigator.pop(context),
+                icon: const Icon(Icons.arrow_back),
+                label: const Text('Back to Collections'),
+              ),
               Text(
                 collectionTitle.toUpperCase(),
                 style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
