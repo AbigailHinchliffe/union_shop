@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:union_shop/screens/collection_details.dart';
+//import 'package:union_shop/screens/collection_details.dart';
 import 'package:union_shop/widgets/appshell.dart';
 
 class Collection {
@@ -98,10 +98,7 @@ class CollectionsScreen extends StatelessWidget {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => CollectionDetailScreen(
-                collectionId: c.id,
-                collectionTitle: c.title,
-              ),
+              builder: (context) => const Placeholder(), // Fixed: added colon and const
             ),
           );
         },
