@@ -125,6 +125,14 @@ class CollectionsScreen extends StatelessWidget {
                         ),
                 ),
               ),
+              Positioned.fill(
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(8),
+                    color: Colors.black.withOpacity(0.4),
+                  ),
+                ),
+              ),
               Center(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
