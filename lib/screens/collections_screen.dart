@@ -80,13 +80,13 @@ class CollectionsScreen extends StatelessWidget {
       const Collection(
         id: 'Pride',
         title: 'Pride Collection',
-        thumbnail: '',
+        thumbnail: 'assets/images/rainbowtote.jpg',
         description: 'Celebrate diversity with our Pride Collection.',
       ),
       const Collection(
         id: 'Sale',
         title: 'Sale Collection',
-        thumbnail: '',
+        thumbnail: 'assets/images/styluspen.jpg',
         description: 'Our Sale Stock.',
       ),
     ];
