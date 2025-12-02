@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:union_shop/widgets/appshell.dart';
-import 'package:union_shop/main.dart';
 
 class Collection {
   final String id;
@@ -41,7 +40,8 @@ class CollectionsScreen extends StatelessWidget{
                 physics: const NeverScrollableScrollPhysics(),
                 crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
                 crossAxisSpacing: 24,
-                mainAxisSpacing: 48,
+                mainAxisSpacing: 24,
+                childAspectRatio: 1.2,
                 children: _buildCollectionCards(context),
               ),
             ],
@@ -92,10 +92,43 @@ class CollectionsScreen extends StatelessWidget{
     ];
 
     return collections.map((c) {
-      return ProductCard(
-        title: c.title,
-        price: '',
-        imageUrl: c.thumbnail,
+      return GestureDetector(
+        onTap: () {
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Stack(
+            children: [
+              // Background image
+              Positioned.fill(
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(8),
+                  child: c.thumbnail.isEmpty
+                      ? Container(
+                          color: Colors.grey[300],
+                          child: const Center(
+                            child: Icon(Icons.image_not_supported, color: Colors.grey, size: 50),
+                          ),
+                        )
+                      : Image.asset(
+                          c.thumbnail,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              color: Colors.grey[300],
+                              child: const Center(
+                                child: Icon(Icons.image_not_supported, color: Colors.grey, size: 50),
+                              ),
+                            );
+                          },
+                        ),
+                ),
+              ),
+            ],
+          ),
+        ),
       );
     }).toList();
   }
