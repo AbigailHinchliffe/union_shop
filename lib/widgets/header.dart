@@ -10,7 +10,27 @@ class AppHeader extends StatelessWidget{
   
   @override
   Widget build (BuildContext context){
-    void placeholderCallbackForButtons() {}
+    
+    void showSearchBox() {
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          content: const TextField(
+            decoration: InputDecoration(
+              hintText: 'Type here...',
+              border: OutlineInputBorder(),
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: const Text('Close'),
+            ),
+          ],
+        ),
+      );
+    }
+    
     final isMobile = MediaQuery.of(context).size.width < 768;
     
     return Container(
@@ -101,7 +121,7 @@ class AppHeader extends StatelessWidget{
                           minWidth: 32,
                           minHeight: 32,
                         ),
-                        onPressed: placeholderCallbackForButtons,
+                        onPressed: showSearchBox,
                       ),
                       IconButton(
                         icon: const Icon(
@@ -114,7 +134,11 @@ class AppHeader extends StatelessWidget{
                           minWidth: 32,
                           minHeight: 32,
                         ),
-                        onPressed: placeholderCallbackForButtons,
+                          onPressed: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Account features not yet implemented')),
+                          );
+                        },
                       ),
                       IconButton(
                         icon: const Icon(
@@ -123,11 +147,12 @@ class AppHeader extends StatelessWidget{
                           color: Colors.grey,
                         ),
                         padding: const EdgeInsets.all(8),
-                        constraints: const BoxConstraints(
-                          minWidth: 32,
-                          minHeight: 32,
-                        ),
-                        onPressed: placeholderCallbackForButtons,
+                        constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
+                        onPressed: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Shopping cart features not yet implemented')),
+                          );
+                        },
                       ),
                       if (isMobile) const DropDown(),
                     ],
@@ -174,18 +199,9 @@ class AppHeader extends StatelessWidget{
         }
       },
       itemBuilder: (context) => [
-        const PopupMenuItem(
-          value: 'collections',
-          child: Text('Collections'),
-        ),
-        const PopupMenuItem(
-          value: 'products',
-          child: Text('Products'),
-        ),
-        const PopupMenuItem(
-          value: 'sale',
-          child: Text('Sale'),
-        ),
+        const PopupMenuItem(value: 'collections', child: Text('Collections')),
+        const PopupMenuItem(value: 'products', child: Text('Products')),
+        const PopupMenuItem(value: 'sale', child: Text('Sale')),
       ],
     );
   }

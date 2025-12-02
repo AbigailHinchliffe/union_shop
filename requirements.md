@@ -83,7 +83,7 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [❌] Show mock success (SnackBar) on submit with valid input
   - [❌] Add unit tests for validation logic and a widget test for the form
 
-- [❌] Navbar (desktop + collapsed mobile menu)
+- [❌] Navbar (desktop + collapsed mobile menu) (5%)
   - [✅] Implement AppHeader with desktop layout (inline links) and mobile collapse
   - [✅] Add menu icon that opens a dropdown/sliding panel
   - [❌] Wire menu items to the routes for Home, Collections, About, Sale
