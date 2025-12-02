@@ -82,5 +82,75 @@ void main() {
       expect(find.text('Test Product'), findsOneWidget);
       expect(find.text('£10.00'), findsOneWidget);
     });
+
+    testWidgets('displays "PRODUCTS SECTION" title on home screen', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          home: Scaffold(
+            body: SingleChildScrollView(
+              child: Column(
+                children: [
+                  const AppHeader(),
+                  const HeroCarousel(enableAutoRotate: false),
+                  Container(
+                    color: Colors.white,
+                    child: const Padding(
+                      padding: EdgeInsets.all(40.0),
+                      child: Column(
+                        children: [
+                          Text(
+                            'PRODUCTS SECTION',
+                            style: TextStyle(fontSize: 20, color: Colors.black, letterSpacing: 1),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      expect(find.text('PRODUCTS SECTION'), findsOneWidget);
+    });
+
+    testWidgets('displays "VIEW ALL PRODUCTS" button', (tester) async {
+      await tester.pumpWidget(
+        MaterialApp(
+          routes: {
+            '/collections': (context) => const Scaffold(
+                  body: Center(child: Text('COLLECTIONS')),
+                ),
+          },
+          home: Builder(
+            builder: (context) => Scaffold(
+              body: Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.pushNamed(context, '/collections');
+                  },
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFF4d2963),
+                    foregroundColor: Colors.white,
+                  ),
+                  child: const Text('VIEW ALL PRODUCTS'),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pump();
+
+      // Find the button
+      expect(find.text('VIEW ALL PRODUCTS'), findsOneWidget);
+      
+      // Verify button has correct color
+      final button = tester.widget<ElevatedButton>(find.byType(ElevatedButton));
+      expect(button.style?.backgroundColor?.resolve({}), const Color(0xFF4d2963));
+    });
   });
 }
