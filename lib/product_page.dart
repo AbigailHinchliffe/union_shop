@@ -103,6 +103,15 @@ class ProductCatalog {
       'description': 'Purple hoodie with university logo',
       'collection': 'Essentials',
     },
+    'stylus_pen': {
+      'id': 'stylus_pen',
+      'title': 'Stylus Pen',
+      'price': '£7.00',
+      'image': 'assets/images/styluspen.jpg',
+      'imageUrl': 'assets/images/styluspen.jpg',
+      'description': 'Multi-functional stylus pen for touchscreens',
+      'collection': 'Sale',
+    },
   };
 
   static Map<String, String>? getProductById(String id) {
