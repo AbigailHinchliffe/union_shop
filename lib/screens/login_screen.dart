@@ -37,6 +37,10 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Text(_isLogin ? 'LOGIN' : 'SIGN UP', style: const TextStyle(color: Colors.white)),
                 ),
               ),
+              TextButton(
+                onPressed: () => setState(() => _isLogin = !_isLogin),
+                child: Text(_isLogin ? 'Need an account? Sign up' : 'Have an account? Login'),
+              ),
             ],
           ),
         ),
