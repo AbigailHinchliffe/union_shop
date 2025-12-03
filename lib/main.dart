@@ -36,6 +36,10 @@ class UnionShopApp extends StatelessWidget {
           collectionId: 'Sale', 
           collectionTitle: 'Sale Collection'
             ),
+        '/all-products': (context) => const CollectionDetailScreen(
+          collectionId: 'All',
+          collectionTitle: 'All Products',
+        ),
       },
     );
   }
