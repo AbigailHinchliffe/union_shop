@@ -142,7 +142,6 @@ class ProductPage extends StatelessWidget {
     
     final product = productId != null ? ProductCatalog.getProductById(productId) : null;
     
-    // Fallback values if product not found
     final String title = product?['title'] ?? 'Product Not Found';
     final String price = product?['price'] ?? '£0.00';
     final String imageUrl = product?['imageUrl'] ?? 'assets/images/placeholder.png';
@@ -162,7 +161,6 @@ class ProductPage extends StatelessWidget {
             ),
             const SizedBox(height: 16),
 
-            // Product image
             Container(
               height: 300,
               width: double.infinity,
@@ -196,7 +194,6 @@ class ProductPage extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // Product name
             Text(
               title,
               style: const TextStyle(
@@ -208,7 +205,6 @@ class ProductPage extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            // Product price
             Text(
               price,
               style: const TextStyle(
@@ -220,7 +216,6 @@ class ProductPage extends StatelessWidget {
 
             const SizedBox(height: 24),
 
-            // Product description
             const Text(
               'Description',
               style: TextStyle(
@@ -236,6 +231,21 @@ class ProductPage extends StatelessWidget {
                 fontSize: 16,
                 color: Colors.grey,
                 height: 1.5,
+              ),
+            ),
+
+            const SizedBox(height: 32),
+
+            SizedBox(
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: () {}, 
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF4d2963),
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                ),
+                icon: const Icon(Icons.shopping_cart, color: Colors.white),
+                label: const Text('ADD TO CART', style: TextStyle(fontSize: 16, color: Colors.white)),
               ),
             ),
           ],
