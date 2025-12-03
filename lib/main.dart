@@ -25,12 +25,16 @@ class UnionShopApp extends StatelessWidget {
       home: const HomeScreen(),
       initialRoute: '/',
       routes: {
-        '/product': (context) => const ProductPage(),
+        //'/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUs(),
         '/collections': (context) => const CollectionsScreen(),
         '/essentials': (context) => const CollectionDetailScreen(
               collectionId: 'Essentials',
               collectionTitle: 'Basic Essentials Collection',
+            ),
+        '/sale': (context) => const CollectionDetailScreen(
+          collectionId: 'Sale', 
+          collectionTitle: 'Sale Collection'
             ),
       },
     );

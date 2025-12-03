@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:union_shop/about_us.dart';
 import 'package:union_shop/main.dart';
 import 'package:union_shop/screens/collections_screen.dart';
+import 'package:union_shop/screens/collection_detail.dart';
 
 class DropDown extends StatefulWidget {
   const DropDown({super.key});
@@ -142,7 +143,10 @@ class _DropDownState extends State<DropDown> {
             _close();
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Placeholder())
+              MaterialPageRoute(builder: (context) => const CollectionDetailScreen(
+          collectionId: 'Sale', 
+          collectionTitle: 'Sale Collection'),
+              ),
             );
           },
         ),
