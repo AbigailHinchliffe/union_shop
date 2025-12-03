@@ -25,7 +25,8 @@ class UnionShopApp extends StatelessWidget {
       home: const HomeScreen(),
       initialRoute: '/',
       routes: {
-        //'/product': (context) => const ProductPage(),
+        '/home': (context) => const HomeScreen(),
+        '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUs(),
         '/collections': (context) => const CollectionsScreen(),
         '/essentials': (context) => const CollectionDetailScreen(
