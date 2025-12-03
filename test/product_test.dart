@@ -113,5 +113,33 @@ void main() {
       final all = ProductCatalog.getAllProducts();
       expect(all.length, greaterThan(5));
     });
+
+    testWidgets('ProductCatalog has sale items with originalPrice and salePercentage', (tester) async {
+      // Test that sale items exist in the catalog with required fields
+      final saleProducts = ProductCatalog.getProductsByCollection('Sale');
+      expect(saleProducts.length, greaterThan(0));
+      
+      for (final product in saleProducts) {
+        expect(product['originalPrice'], isNotNull, reason: '${product['title']} should have originalPrice');
+        expect(product['salePercentage'], isNotNull, reason: '${product['title']} should have salePercentage');
+        expect(product['price'], isNotNull, reason: '${product['title']} should have sale price');
+      }
+
+      // Verify specific sale items
+      final stylus = ProductCatalog.getProductById('stylus_pen');
+      expect(stylus?['originalPrice'], '£7.00');
+      expect(stylus?['salePercentage'], '20');
+      expect(stylus?['price'], '£5.60');
+
+      final gloves = ProductCatalog.getProductById('black_gloves');
+      expect(gloves?['originalPrice'], '£10.00');
+      expect(gloves?['salePercentage'], '25');
+      expect(gloves?['price'], '£7.50');
+
+      final beanie = ProductCatalog.getProductById('white_beanie');
+      expect(beanie?['originalPrice'], '£12.00');
+      expect(beanie?['salePercentage'], '20');
+      expect(beanie?['price'], '£9.60');
+    });
   });
 }
