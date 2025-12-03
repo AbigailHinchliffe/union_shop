@@ -140,14 +140,18 @@ class _DropDownState extends State<DropDown> {
         ListTile(
           title: const Text('Sale', style: TextStyle(fontSize: 18)),
           onTap: () {
+            final nav = Navigator.of(context);
             _close();
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const CollectionDetailScreen(
-          collectionId: 'Sale', 
-          collectionTitle: 'Sale Collection'),
-              ),
-            );
+            Future.delayed(const Duration(milliseconds: 100), () {
+              nav.push(
+                MaterialPageRoute(
+                  builder: (context) => const CollectionDetailScreen(
+                    collectionId: 'Sale', 
+                    collectionTitle: 'Sale Collection',
+                  ),
+                ),
+              );
+            });
           },
         ),
       ],
