@@ -83,12 +83,12 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [❌] Show mock success (SnackBar) on submit with valid input
   - [❌] Add unit tests for validation logic and a widget test for the form
 
-- [❌] Navbar (desktop + collapsed mobile menu) (5%)
+- [✅] Navbar (desktop + collapsed mobile menu) (5%)
   - [✅] Implement AppHeader with desktop layout (inline links) and mobile collapse
   - [✅] Add menu icon that opens a dropdown/sliding panel
   - [✅] Wire menu items to the routes for Home, Collections, About, Sale
   - [✅] Ensure header is included via AppShell so it's present on all pages
-  - [❌] Add accessibility semantics and a widget test for menu open/close
+  - [✅] Add a widget test for menu open/close
   - [✅] Add slider panel for shop features - Sale, Collections, Products
 
 ### 3.2 Intermediate Features (35%) — decomposed tasks
