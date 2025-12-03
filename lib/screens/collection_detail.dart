@@ -19,12 +19,23 @@ class CollectionDetailScreen extends StatefulWidget {
 class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
   int _currentPage = 1;
   final int _itemsPerPage = 6;
+  String _sortBy = 'none';
 
   List<Map<String, String>> _getAllProducts() {
+    List<Map<String, String>> products;
     if (widget.collectionId == 'All') {
-      return ProductCatalog.getAllProducts();
+      products = ProductCatalog.getAllProducts();
+    } else {
+      products = ProductCatalog.getProductsByCollection(widget.collectionId);
     }
-    return ProductCatalog.getProductsByCollection(widget.collectionId);
+    
+    if (_sortBy == 'a-z') {
+      products.sort((a, b) => a['title']!.compareTo(b['title']!));
+    } else if (_sortBy == 'z-a') {
+      products.sort((a, b) => b['title']!.compareTo(a['title']!));
+    }
+    
+    return products;
   }
 
   @override
@@ -63,9 +74,22 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                       maxLines: 2,
                     ),
                   ),
-                  if (totalPages > 1)
-                    Row(
-                      children: [
+                  Row(
+                    children: [
+                      DropdownButton<String>(
+                        value: _sortBy,
+                        items: const [
+                          DropdownMenuItem(value: 'none', child: Text('Sort')),
+                          DropdownMenuItem(value: 'a-z', child: Text('A-Z')),
+                          DropdownMenuItem(value: 'z-a', child: Text('Z-A')),
+                        ],
+                        onChanged: (v) => setState(() {
+                          _sortBy = v!;
+                          _currentPage = 1;
+                        }),
+                      ),
+                      if (totalPages > 1) ...[
+                        const SizedBox(width: 8),
                         const Text('Page: '),
                         DropdownButton<int>(
                           value: _currentPage,
@@ -80,7 +104,8 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                         ),
                         Text(' of $totalPages'),
                       ],
-                    ),
+                    ],
+                  ),
                 ],
               ),
               const SizedBox(height: 20),
