@@ -156,8 +156,15 @@ class ProductCatalog {
   }
 }
 
-class ProductPage extends StatelessWidget {
+class ProductPage extends StatefulWidget {
   const ProductPage({super.key});
+
+  @override
+  State<ProductPage> createState() => _ProductPageState();
+}
+
+class _ProductPageState extends State<ProductPage> {
+  int _selectedQuantity = 1;
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -261,12 +268,57 @@ class ProductPage extends StatelessWidget {
               ),
             ),
 
+            const SizedBox(height: 24),
+
+            Row(
+              children: [
+                const Text(
+                  'Quantity:',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                    color: Colors.black,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.grey.shade400),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  child: DropdownButton<int>(
+                    value: _selectedQuantity,
+                    underline: const SizedBox(),
+                    items: List.generate(10, (index) => index + 1)
+                        .map((quantity) => DropdownMenuItem<int>(
+                              value: quantity,
+                              child: Text(quantity.toString()),
+                            ))
+                        .toList(),
+                    onChanged: (value) {
+                      setState(() {
+                        _selectedQuantity = value ?? 1;
+                      });
+                    },
+                  ),
+                ),
+              ],
+            ),
+
             const SizedBox(height: 32),
 
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(
-                onPressed: () {}, 
+                onPressed: () {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text('Added $_selectedQuantity x $title to cart'),
+                      duration: const Duration(seconds: 2),
+                    ),
+                  );
+                }, 
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF4d2963),
                   padding: const EdgeInsets.symmetric(vertical: 16),
