@@ -121,6 +121,15 @@ class ProductCatalog {
       'description': 'Hoodie you can customise with your own text or design',
       'collection': 'Custom',
     },
+    'rainbow_tote': {
+      'id': 'rainbow_tote',
+      'title': 'Rainbow Tote Bag',
+      'price': '£12.00',
+      'image': 'assets/images/rainbowtote.jpg',
+      'imageUrl': 'assets/images/rainbowtote.jpg',
+      'description': 'Celebrate diversity with this rainbow tote bag',
+      'collection': 'Pride',
+    },
   };
 
   static Map<String, String>? getProductById(String id) {
