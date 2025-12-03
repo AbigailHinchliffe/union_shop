@@ -71,11 +71,11 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅] Handle missing image gracefully via errorBuilder/fallback
   - [✅] Add a widget/unit test covering product detail rendering and a widget interaction
 
-- [❌] Sale Collection Page (3%)
+- [✅] Sale Collection Page (3%)
   - [✅] Create SaleCollectionScreen and route
   - [✅] Filter static products for a sale flag and render ProductCard list
   - [✅] Show a sale badge or discounted price on cards
-  - [❌] Add test asserting sale badge presence on at least one product
+  - [✅] Add test asserting sale badge presence on at least one product
 
 - [❌] Authentication UI (login/signup UI only) (4%)
   - [❌] Create LoginScreen and SignupScreen widgets/routes
