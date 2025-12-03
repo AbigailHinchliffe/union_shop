@@ -21,6 +21,9 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
   final int _itemsPerPage = 6;
 
   List<Map<String, String>> _getAllProducts() {
+    if (widget.collectionId == 'All') {
+      return ProductCatalog.getAllProducts();
+    }
     return ProductCatalog.getProductsByCollection(widget.collectionId);
   }
 
