@@ -26,7 +26,6 @@ class UnionShopApp extends StatelessWidget {
       initialRoute: '/',
       routes: {
         '/home': (context) => const HomeScreen(),
-        '/product': (context) => const ProductPage(),
         '/about': (context) => const AboutUs(),
         '/collections': (context) => const CollectionsScreen(),
         '/essentials': (context) => const CollectionDetailScreen(
@@ -134,7 +133,13 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap ?? () {
-        Navigator.pushNamed(context, '/product', arguments: productId);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ProductPage(),
+            settings: RouteSettings(arguments: productId),
+          ),
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

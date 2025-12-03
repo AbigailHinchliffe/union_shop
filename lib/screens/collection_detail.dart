@@ -105,7 +105,13 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
   Widget _buildProductCard(Map<String, String> product) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushNamed(context, '/product', arguments: product['id']);
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const ProductPage(),
+            settings: RouteSettings(arguments: product['id']),
+          ),
+        );
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
