@@ -47,11 +47,13 @@ class ProductCatalog {
     'white_beanie': {
       'id': 'white_beanie',
       'title': 'White Beanie',
-      'price': '£12.00',
+      'price': '£9.60',
+      'originalPrice': '£12.00',
+      'salePercentage': '20',
       'image': 'assets/images/whitebeanie.jpg',
       'imageUrl': 'assets/images/whitebeanie.jpg',
-      'description': 'Warm white beanie for cold days',
-      'collection': 'Essentials',
+      'description': 'Warm white beanie hat',
+      'collection': 'Sale',
       'type': 'accessory',
     },
     'basic_tee': {
@@ -77,11 +79,13 @@ class ProductCatalog {
     'black_gloves': {
       'id': 'black_gloves',
       'title': 'Black Gloves',
-      'price': '£10.00',
+      'price': '£7.50',
+      'originalPrice': '£10.00',
+      'salePercentage': '25',
       'image': 'assets/images/blackgloves.jpg',
       'imageUrl': 'assets/images/blackgloves.jpg',
       'description': 'Warm black gloves',
-      'collection': 'Essentials',
+      'collection': 'Sale',
       'type': 'accessory',
     },
     'black_hoodie': {
@@ -117,7 +121,9 @@ class ProductCatalog {
     'stylus_pen': {
       'id': 'stylus_pen',
       'title': 'Stylus Pen',
-      'price': '£7.00',
+      'price': '£5.60',
+      'originalPrice': '£7.00',
+      'salePercentage': '20',
       'image': 'assets/images/styluspen.jpg',
       'imageUrl': 'assets/images/styluspen.jpg',
       'description': 'Multi-functional stylus pen for touchscreens',
