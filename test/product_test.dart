@@ -1,57 +1,117 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/product_page.dart';
+import 'package:union_shop/widgets/appshell.dart';
 
 void main() {
   group('Product Page Tests', () {
-    testWidgets('should display product page with all elements', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+    testWidgets('displays product with valid ID from catalog', (tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Builder(
+          builder: (context) {
+            return Navigator(
+              onGenerateRoute: (settings) => MaterialPageRoute(
+                builder: (context) => const ProductPage(),
+                settings: const RouteSettings(arguments: 'purple_tshirt'),
+              ),
+            );
+          },
+        ),
+      ));
       await tester.pumpAndSettle();
 
-      // Check header elements
-      expect(find.byIcon(Icons.search), findsOneWidget);
-      expect(find.byIcon(Icons.person_outline), findsOneWidget);
-      expect(find.byIcon(Icons.shopping_bag_outlined), findsOneWidget);
-      expect(find.byIcon(Icons.menu), findsOneWidget);
-
-      // Check product details
-      expect(find.text('Placeholder Product Name'), findsOneWidget);
+      expect(find.textContaining('Purple T-Shirt'), findsOneWidget);
       expect(find.text('£15.00'), findsOneWidget);
+    });
+
+    testWidgets('displays Product Not Found for invalid ID', (tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Builder(
+          builder: (context) {
+            return Navigator(
+              onGenerateRoute: (settings) => MaterialPageRoute(
+                builder: (context) => const ProductPage(),
+                settings: const RouteSettings(arguments: 'invalid_id'),
+              ),
+            );
+          },
+        ),
+      ));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Product Not Found'), findsOneWidget);
+    });
+
+    testWidgets('uses Appshell wrapper', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
+      expect(find.byType(Appshell), findsOneWidget);
+    });
+
+    testWidgets('has back button', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
+      expect(find.byIcon(Icons.arrow_back), findsOneWidget);
+      expect(find.text('Back'), findsOneWidget);
+    });
+
+    testWidgets('displays Add to Cart button', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
+      expect(find.text('ADD TO CART'), findsOneWidget);
+      expect(find.byIcon(Icons.shopping_cart), findsOneWidget);
+    });
+
+    testWidgets('Add to Cart button is tappable', (tester) async {
+      await tester.pumpWidget(MaterialApp(
+        home: Builder(
+          builder: (context) {
+            return Navigator(
+              onGenerateRoute: (settings) => MaterialPageRoute(
+                builder: (context) => const ProductPage(),
+                settings: const RouteSettings(arguments: 'purple_tshirt'),
+              ),
+            );
+          },
+        ),
+      ));
+      await tester.pumpAndSettle();
+      
+      final button = find.text('ADD TO CART');
+      expect(button, findsOneWidget);
+      await tester.ensureVisible(button);
+      await tester.tap(button, warnIfMissed: false);
+      await tester.pump();
+    });
+
+    testWidgets('displays product image', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
+      expect(find.byType(Image), findsWidgets);
+    });
+
+    testWidgets('has Description section', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
+      await tester.pumpAndSettle();
       expect(find.text('Description'), findsOneWidget);
     });
 
-    testWidgets('should display product image container', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
-      await tester.pumpAndSettle();
-
-      // Check for Container with height 300
-      final containerFinder = find.byWidgetPredicate(
-        (widget) => widget is Container && widget.constraints == null,
-        description: 'Product image container',
-      );
-
-      expect(containerFinder, findsWidgets);
+    testWidgets('ProductCatalog returns products', (tester) async {
+      final product = ProductCatalog.getProductById('purple_tshirt');
+      expect(product, isNotNull);
+      expect(product!['title'], 'Purple T-Shirt');
+      expect(product['price'], '£15.00');
     });
 
-    testWidgets('should display placeholder header text', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
-      await tester.pumpAndSettle();
-
-      expect(find.text('PLACEHOLDER HEADER TEXT'), findsOneWidget);
+    testWidgets('ProductCatalog filters by collection', (tester) async {
+      final essentials = ProductCatalog.getProductsByCollection('Essentials');
+      expect(essentials.isNotEmpty, true);
+      expect(essentials.every((p) => p['collection'] == 'Essentials'), true);
     });
 
-    testWidgets('should display placeholder footer', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
-      await tester.pumpAndSettle();
-
-      expect(find.text('Placeholder Footer'), findsOneWidget);
-    });
-
-    testWidgets('should display product description text', (tester) async {
-      await tester.pumpWidget(const MaterialApp(home: ProductPage()));
-      await tester.pumpAndSettle();
-
-      expect(find.textContaining('This is a placeholder description'), findsOneWidget);
+    testWidgets('ProductCatalog returns all products', (tester) async {
+      final all = ProductCatalog.getAllProducts();
+      expect(all.length, greaterThan(5));
     });
   });
 }
