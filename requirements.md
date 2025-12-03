@@ -79,7 +79,6 @@ The project will be demonstrated live and submitted as a GitHub repository link 
 
 - [❌] Authentication UI (login/signup UI only) (4%)
   - [✅] Create LoginScreen and SignupScreen widgets/routes
-  - [❌] Implement form fields with client-side validation messages
   - [✅] Show mock success (SnackBar) on submit with valid input
   - [❌] Add unit tests for validation logic and a widget test for the form
 
