@@ -49,11 +49,15 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text(
-                    widget.collectionTitle.toUpperCase(),
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
+                  Flexible(
+                    child: Text(
+                      widget.collectionTitle.toUpperCase(),
+                      style: const TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 2,
                     ),
                   ),
                   if (totalPages > 1)
