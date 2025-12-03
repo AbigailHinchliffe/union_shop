@@ -64,11 +64,11 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅] Add a widget test that navigates to a collection and verifies product list
 
 - [❌] Product Page
-  - [❌] Create ProductPage widget and route (accepts product id)
-  - [❌] Display product images (use Image.asset for local assets), title, price, description
+  - [✅] Create ProductPage widget and route (accepts product id)
+  - [✅] Display product images (use Image.asset for local assets), title, price, description
   - [❌] Add UI widgets: size/colour dropdowns, quantity selector (local state only)
   - [❌] Add "Add to cart" button with placeholder behaviour (SnackBar)
-  - [❌] Handle missing image gracefully via errorBuilder/fallback
+  - [✅] Handle missing image gracefully via errorBuilder/fallback
   - [❌] Add a widget/unit test covering product detail rendering and a widget interaction
 
 - [❌] Sale Collection Page
