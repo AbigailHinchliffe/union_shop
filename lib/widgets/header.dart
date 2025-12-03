@@ -5,6 +5,7 @@ import 'package:union_shop/screens/collections_screen.dart';
 import 'package:union_shop/screens/collection_detail.dart';
 import 'dropdown_menu.dart';
 import 'package:union_shop/widgets/search_box.dart';
+import 'package:union_shop/screens/login_screen.dart';
 
 class AppHeader extends StatelessWidget{
   const AppHeader({super.key});
@@ -115,9 +116,10 @@ class AppHeader extends StatelessWidget{
                           minHeight: 32,
                         ),
                           onPressed: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Account features not yet implemented')),
-                          );
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => const LoginScreen()),
+                            );
                         },
                       ),
                       IconButton(
