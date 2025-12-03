@@ -63,21 +63,21 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅] Add back-navigation and breadcrumb text
   - [✅] Add a widget test that navigates to a collection and verifies product list
 
-- [❌] Product Page
+- [✅] Product Page (4%)
   - [✅] Create ProductPage widget and route (accepts product id)
   - [✅] Display product images (use Image.asset for local assets), title, price, description
   - [✅] Add UI widgets: size dropdowns, quantity selector (local state only)
   - [✅] Add "Add to cart" button with placeholder behaviour (SnackBar)
   - [✅] Handle missing image gracefully via errorBuilder/fallback
-  - [❌] Add a widget/unit test covering product detail rendering and a widget interaction
+  - [✅] Add a widget/unit test covering product detail rendering and a widget interaction
 
-- [❌] Sale Collection Page
+- [❌] Sale Collection Page (3%)
   - [✅] Create SaleCollectionScreen and route
   - [✅] Filter static products for a sale flag and render ProductCard list
   - [❌] Show a sale badge or discounted price on cards
   - [❌] Add test asserting sale badge presence on at least one product
 
-- [❌] Authentication UI (login/signup UI only)
+- [❌] Authentication UI (login/signup UI only) (4%)
   - [❌] Create LoginScreen and SignupScreen widgets/routes
   - [❌] Implement form fields with client-side validation messages
   - [❌] Show mock success (SnackBar) on submit with valid input
