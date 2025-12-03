@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:union_shop/widgets/search_box.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -27,11 +28,7 @@ class Footer extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               TextButton(
-                onPressed: () {
-                  ScaffoldMessenger.of(context).showSnackBar(
-                    const SnackBar(content: Text('Search link placeholder')),
-                  );
-                },
+                onPressed: () => showSearchBox(context),
                 child: const Text('Search'),
               ),
               const SizedBox(width: 12),

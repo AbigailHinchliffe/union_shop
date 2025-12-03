@@ -4,47 +4,13 @@ import 'package:union_shop/main.dart';
 import 'package:union_shop/screens/collections_screen.dart';
 import 'package:union_shop/screens/collection_detail.dart';
 import 'dropdown_menu.dart';
+import 'package:union_shop/widgets/search_box.dart';
 
 class AppHeader extends StatelessWidget{
   const AppHeader({super.key});
   
   @override
   Widget build (BuildContext context){
-    
-    void showSearchBox() {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Search...'),
-          content: SizedBox(
-            width: MediaQuery.of(context).size.width * 0.8,
-            child: TextField(
-              autofocus: true,
-              decoration: InputDecoration(
-                hintText: 'Search site...',
-                prefixIcon: const Icon(Icons.search),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(8),
-                ),
-              ),
-              onSubmitted: (value) {
-                Navigator.pop(context);
-                ScaffoldMessenger.of(context).showSnackBar(
-                  SnackBar(content: Text('Searching for: $value')),
-                );
-              },
-            ),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.pop(context),
-              child: const Text('Close'),
-            ),
-          ],
-        ),
-      );
-    }
-    
     final isMobile = MediaQuery.of(context).size.width < 768;
     
     return Container(
@@ -135,7 +101,7 @@ class AppHeader extends StatelessWidget{
                           minWidth: 32,
                           minHeight: 32,
                         ),
-                        onPressed: showSearchBox,
+                        onPressed: () => showSearchBox(context),
                       ),
                       IconButton(
                         icon: const Icon(
