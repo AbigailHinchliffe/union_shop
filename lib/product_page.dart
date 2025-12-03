@@ -11,6 +11,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/gradcap.jpg',
       'description': 'Traditional graduation cap for your special day',
       'collection': 'Graduation',
+      'type': 'accessory',
     },
     'grad_robe': {
       'id': 'grad_robe',
@@ -20,6 +21,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/gradrobe.webp',
       'description': 'Official graduation robe',
       'collection': 'Graduation',
+      'type': 'clothing',
     },
     'diploma_frame': {
       'id': 'diploma_frame',
@@ -29,6 +31,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/photoframe.jpg',
       'description': 'Premium frame for your diploma',
       'collection': 'Graduation',
+      'type': 'accessory',
     },
     
     'purple_tshirt': {
@@ -39,6 +42,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/purpletshirt.jpg',
       'description': 'Comfortable purple t-shirt with university branding',
       'collection': 'Essentials',
+      'type': 'clothing',
     },
     'white_beanie': {
       'id': 'white_beanie',
@@ -48,6 +52,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/whitebeanie.jpg',
       'description': 'Warm white beanie for cold days',
       'collection': 'Essentials',
+      'type': 'accessory',
     },
     'basic_tee': {
       'id': 'basic_tee',
@@ -57,6 +62,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/basictee.jpg',
       'description': 'Essential white t-shirt',
       'collection': 'Essentials',
+      'type': 'clothing',
     },
     'black_joggers': {
       'id': 'black_joggers',
@@ -66,6 +72,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/blackjoggers.jpg',
       'description': 'Comfortable black joggers',
       'collection': 'Essentials',
+      'type': 'clothing',
     },
     'black_gloves': {
       'id': 'black_gloves',
@@ -75,6 +82,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/blackgloves.jpg',
       'description': 'Warm black gloves',
       'collection': 'Essentials',
+      'type': 'accessory',
     },
     'black_hoodie': {
       'id': 'black_hoodie',
@@ -84,6 +92,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/blackhoodie.jpg',
       'description': 'Classic black hoodie',
       'collection': 'Essentials',
+      'type': 'clothing',
     },
     'varsity_jersey': {
       'id': 'varsity_jersey',
@@ -93,6 +102,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/portsunijersey.jpg',
       'description': 'Official Portsmouth University varsity jersey',
       'collection': 'Sports',
+      'type': 'clothing',
     },
     'purple_hoodie': {
       'id': 'purple_hoodie',
@@ -102,6 +112,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/purplehoodie.webp',
       'description': 'Purple hoodie with university logo',
       'collection': 'Essentials',
+      'type': 'clothing',
     },
     'stylus_pen': {
       'id': 'stylus_pen',
@@ -111,6 +122,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/styluspen.jpg',
       'description': 'Multi-functional stylus pen for touchscreens',
       'collection': 'Sale',
+      'type': 'accessory',
     },
     'custom_hoodie': {
       'id': 'custom_hoodie',
@@ -120,6 +132,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/customhoodie.jpg',
       'description': 'Hoodie you can customise with your own text or design',
       'collection': 'Custom',
+      'type': 'clothing',
     },
     'rainbow_tote': {
       'id': 'rainbow_tote',
@@ -129,6 +142,7 @@ class ProductCatalog {
       'imageUrl': 'assets/images/rainbowtote.jpg',
       'description': 'Celebrate diversity with this rainbow tote bag',
       'collection': 'Pride',
+      'type': 'accessory',
     },
   };
 
@@ -165,6 +179,9 @@ class ProductPage extends StatefulWidget {
 
 class _ProductPageState extends State<ProductPage> {
   int _selectedQuantity = 1;
+  String _selectedSize = 'M';
+  
+  final List<String> _sizes = ['XS', 'S', 'M', 'L', 'XL', 'XXL', 'XXXL'];
 
   void navigateToHome(BuildContext context) {
     Navigator.pushNamedAndRemoveUntil(context, '/', (route) => false);
@@ -180,6 +197,8 @@ class _ProductPageState extends State<ProductPage> {
     final String price = product?['price'] ?? '£0.00';
     final String imageUrl = product?['imageUrl'] ?? 'assets/images/placeholder.png';
     final String description = product?['description'] ?? 'Product description not available';
+    final String productType = product?['type'] ?? 'accessory';
+    final bool isClothing = productType == 'clothing';
 
     return Appshell(
       body: Container(
@@ -270,6 +289,43 @@ class _ProductPageState extends State<ProductPage> {
 
             const SizedBox(height: 24),
 
+            if (isClothing) ...[
+              Row(
+                children: [
+                  const Text('Size:',style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.w600,
+                      color: Colors.black,
+                    ),
+                  ),
+                  const SizedBox(width: 12),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey.shade400),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                    child: DropdownButton<String>(
+                      value: _selectedSize,
+                      underline: const SizedBox(),
+                      items: _sizes
+                          .map((size) => DropdownMenuItem<String>(
+                                value: size,
+                                child: Text(size),
+                              ))
+                          .toList(),
+                      onChanged: (value) {
+                        setState(() {
+                          _selectedSize = value ?? 'M';
+                        });
+                      },
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(height: 16),
+            ],
+
             Row(
               children: [
                 const Text(
@@ -312,9 +368,10 @@ class _ProductPageState extends State<ProductPage> {
               width: double.infinity,
               child: ElevatedButton.icon(
                 onPressed: () {
+                  final sizeInfo = isClothing ? ' (Size: $_selectedSize)' : '';
                   ScaffoldMessenger.of(context).showSnackBar(
                     SnackBar(
-                      content: Text('Added $_selectedQuantity x $title to cart'),
+                      content: Text('Added $_selectedQuantity x $title$sizeInfo to cart'),
                       duration: const Duration(seconds: 2),
                     ),
                   );
