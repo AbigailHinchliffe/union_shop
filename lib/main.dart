@@ -102,6 +102,8 @@ class HomeScreen extends StatelessWidget {
                           title: product['title']!,
                           price: product['price']!,
                           imageUrl: product['imageUrl']!,
+                          originalPrice: product['originalPrice'],
+                          salePercentage: product['salePercentage'],
                         );
                       },
                     ),
@@ -122,6 +124,8 @@ class ProductCard extends StatelessWidget {
   final String title;
   final String price;
   final String imageUrl;
+  final String? originalPrice;
+  final String? salePercentage;
   final VoidCallback? onTap;
 
   const ProductCard({
@@ -130,6 +134,8 @@ class ProductCard extends StatelessWidget {
     required this.title,
     required this.price,
     required this.imageUrl,
+    this.originalPrice,
+    this.salePercentage,
     this.onTap,
   });
 
@@ -180,9 +186,44 @@ class ProductCard extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
           ),
           const SizedBox(height: 4),
+          if (originalPrice != null && salePercentage != null)
+            Row(
+              children: [
+                Text(
+                  originalPrice!,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.red,
+                    decoration: TextDecoration.lineThrough,
+                    decorationColor: Colors.red,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    '-$salePercentage%',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          if (originalPrice != null) const SizedBox(height: 2),
           Text(
             price,
-            style: const TextStyle(fontSize: 14, color: Colors.black87),
+            style: TextStyle(
+              fontSize: 14,
+              color: originalPrice != null ? Colors.green[700] : Colors.black87,
+              fontWeight: originalPrice != null ? FontWeight.bold : FontWeight.normal,
+            ),
           ),
         ],
       ),
