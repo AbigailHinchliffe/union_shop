@@ -49,6 +49,7 @@ void main() {
               crossAxisCount: 2,
               children: const [
                 ProductCard(
+                  productId: 'varsity_jersey',
                   title: 'Portsmouth University Jersey',
                   price: '£25.00',
                   imageUrl: 'assets/images/jerseypurp.jpg',
@@ -70,6 +71,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: ProductCard(
+              productId: 'test_product',
               title: 'Test Product',
               price: '£10.00',
               imageUrl: 'assets/images/test.jpg',
@@ -160,6 +162,7 @@ void main() {
         MaterialApp(
           home: Scaffold(
             body: ProductCard(
+              productId: 'varsity_jersey',
               title: 'Portsmouth University Jersey',
               price: '£25.00',
               imageUrl: 'assets/images/portsunijersey.jpg',
@@ -194,6 +197,7 @@ void main() {
         const MaterialApp(
           home: Scaffold(
             body: ProductCard(
+              productId: 'purple_tshirt',
               title: 'Purple T-Shirt',
               price: '£12.00',
               imageUrl: 'assets/images/purpletshirt.jpg',
