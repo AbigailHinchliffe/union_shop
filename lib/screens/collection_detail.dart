@@ -135,6 +135,10 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
   }
 
   Widget _buildProductCard(Map<String, String> product) {
+    final originalPrice = product['originalPrice'];
+    final salePercentage = product['salePercentage'];
+    final price = product['price']!;
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -159,7 +163,45 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
             product['title']!,
             style: const TextStyle(fontWeight: FontWeight.w500),
           ),
-          Text(product['price']!),
+          if (originalPrice != null && salePercentage != null) ...[
+            Row(
+              children: [
+                Text(
+                  originalPrice,
+                  style: const TextStyle(
+                    fontSize: 13,
+                    color: Colors.red,
+                    decoration: TextDecoration.lineThrough,
+                    decorationColor: Colors.red,
+                  ),
+                ),
+                const SizedBox(width: 6),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 2),
+                  decoration: BoxDecoration(
+                    color: Colors.red,
+                    borderRadius: BorderRadius.circular(4),
+                  ),
+                  child: Text(
+                    '-$salePercentage%',
+                    style: const TextStyle(
+                      fontSize: 11,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 2),
+          ],
+          Text(
+            price,
+            style: TextStyle(
+              color: originalPrice != null ? Colors.green[700] : Colors.black,
+              fontWeight: originalPrice != null ? FontWeight.bold : FontWeight.normal,
+            ),
+          ),
         ],
       ),
     );
