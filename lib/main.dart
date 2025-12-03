@@ -52,6 +52,8 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final featuredProducts = ProductCatalog.getFeaturedProducts();
+    
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -75,35 +77,25 @@ class HomeScreen extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 48),
-                    GridView.count(
+                    GridView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      crossAxisCount:
-                          MediaQuery.of(context).size.width > 600 ? 2 : 1,
-                      crossAxisSpacing: 24,
-                      mainAxisSpacing: 48,
-                      children: const [
-                        ProductCard(
-                          title: 'Portsmouth University Jersey',
-                          price: '£25.00',
-                          imageUrl: 'assets/images/portsunijersey.jpg',
-                        ),
-                        ProductCard(
-                          title: 'Purple tee',
-                          price: '£12.00',
-                          imageUrl: 'assets/images/purpletshirt.jpg',
-                        ),
-                        ProductCard(
-                          title: 'Black Joggers',
-                          price: '£18.00',
-                          imageUrl: 'assets/images/blackjoggers.jpg',
-                        ),
-                        ProductCard(
-                          title: 'White beanie',
-                          price: '£8.00',
-                          imageUrl: 'assets/images/whitebeanie.jpg',
-                        ),
-                      ],
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1,
+                        crossAxisSpacing: 24,
+                        mainAxisSpacing: 48,
+                        childAspectRatio: 0.8,
+                      ),
+                      itemCount: featuredProducts.length,
+                      itemBuilder: (context, index) {
+                        final product = featuredProducts[index];
+                        return ProductCard(
+                          productId: product['id']!,
+                          title: product['title']!,
+                          price: product['price']!,
+                          imageUrl: product['imageUrl']!,
+                        );
+                      },
                     ),
                   ],
                 ),
@@ -118,6 +110,7 @@ class HomeScreen extends StatelessWidget {
 }
 
 class ProductCard extends StatelessWidget {
+  final String productId;
   final String title;
   final String price;
   final String imageUrl;
@@ -125,6 +118,7 @@ class ProductCard extends StatelessWidget {
 
   const ProductCard({
     super.key,
+    required this.productId,
     required this.title,
     required this.price,
     required this.imageUrl,
@@ -135,7 +129,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: onTap ?? () {
-        Navigator.pushNamed(context, '/product', arguments: {'title': title, 'price': price, 'imageUrl': imageUrl});
+        Navigator.pushNamed(context, '/product', arguments: productId);
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
