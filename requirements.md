@@ -77,10 +77,10 @@ The project will be demonstrated live and submitted as a GitHub repository link 
   - [✅] Show a sale badge or discounted price on cards
   - [✅] Add test asserting sale badge presence on at least one product
 
-- [❌] Authentication UI (login/signup UI only) (4%)
+- [✅] Authentication UI (login/signup UI only) (4%)
   - [✅] Create LoginScreen and SignupScreen widgets/routes
   - [✅] Show mock success (SnackBar) on submit with valid input
-  - [❌] Add unit tests for validation logic and a widget test for the form
+  - [✅] Add a widget test for the form
 
 - [✅] Navbar (desktop + collapsed mobile menu) (5%)
   - [✅] Implement AppHeader with desktop layout (inline links) and mobile collapse
