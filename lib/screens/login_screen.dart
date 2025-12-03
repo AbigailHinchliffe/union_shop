@@ -9,7 +9,8 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  bool _isLogin = true;
+  final bool _isLogin = true;
+  final _email = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,16 @@ class _LoginScreenState extends State<LoginScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(_isLogin ? 'Login' : 'Sign Up', style: const TextStyle(fontSize: 32, fontWeight: FontWeight.bold)),
+              const SizedBox(height: 32),
+              TextField(controller: _email, decoration: const InputDecoration(labelText: 'Email', border: OutlineInputBorder())),
+              SizedBox(
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: () => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(_isLogin ? 'Logged in' : 'Signed up'))),
+                  style: ElevatedButton.styleFrom(backgroundColor: const Color(0xFF4d2963), padding: const EdgeInsets.all(16)),
+                  child: Text(_isLogin ? 'LOGIN' : 'SIGN UP', style: const TextStyle(color: Colors.white)),
+                ),
+              ),
             ],
           ),
         ),
