@@ -74,7 +74,7 @@ The project will be demonstrated live and submitted as a GitHub repository link 
 - [❌] Sale Collection Page (3%)
   - [✅] Create SaleCollectionScreen and route
   - [✅] Filter static products for a sale flag and render ProductCard list
-  - [❌] Show a sale badge or discounted price on cards
+  - [✅] Show a sale badge or discounted price on cards
   - [❌] Add test asserting sale badge presence on at least one product
 
 - [❌] Authentication UI (login/signup UI only) (4%)
