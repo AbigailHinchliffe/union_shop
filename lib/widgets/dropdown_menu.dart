@@ -132,7 +132,12 @@ class _DropDownState extends State<DropDown> {
             _close();
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const Placeholder()),
+              MaterialPageRoute(
+                builder: (context) => const CollectionDetailScreen(
+                  collectionId: 'All',
+                  collectionTitle: 'All Products',
+                ),
+              ),
             );
           },
         ),

@@ -3,7 +3,6 @@ import 'package:union_shop/about_us.dart';
 import 'package:union_shop/main.dart';
 import 'package:union_shop/screens/collections_screen.dart';
 import 'package:union_shop/screens/collection_detail.dart';
-import 'package:union_shop/product_page.dart';
 import 'dropdown_menu.dart';
 
 class AppHeader extends StatelessWidget{
@@ -202,7 +201,12 @@ class AppHeader extends StatelessWidget{
           case 'products':
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const ProductPage()),
+              MaterialPageRoute(
+                builder: (context) => const CollectionDetailScreen(
+                  collectionId: 'All',
+                  collectionTitle: 'All Products',
+                ),
+              ),
             );
             break;
           case 'sale':
