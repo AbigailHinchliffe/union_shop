@@ -92,7 +92,7 @@ class ProductCatalog {
       'image': 'assets/images/portsunijersey.jpg',
       'imageUrl': 'assets/images/portsunijersey.jpg',
       'description': 'Official Portsmouth University varsity jersey',
-      'collection': 'Essentials',
+      'collection': 'Sports',
     },
     'purple_hoodie': {
       'id': 'purple_hoodie',
@@ -111,6 +111,15 @@ class ProductCatalog {
       'imageUrl': 'assets/images/styluspen.jpg',
       'description': 'Multi-functional stylus pen for touchscreens',
       'collection': 'Sale',
+    },
+    'custom_hoodie': {
+      'id': 'custom_hoodie',
+      'title': 'Custom Hoodie',
+      'price': '£40.00',
+      'image': 'assets/images/customhoodie.jpg',
+      'imageUrl': 'assets/images/customhoodie.jpg',
+      'description': 'Hoodie you can customise with your own text or design',
+      'collection': 'Custom',
     },
   };
 
