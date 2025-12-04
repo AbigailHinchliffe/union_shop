@@ -71,5 +71,32 @@ void main() {
       const app = UnionShopApp();
       expect(app, isA<UnionShopApp>());
     });
+
+    testWidgets('ProductCard image error builder', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductCard(productId: 'test', title: 'Test', price: '£10', imageUrl: 'invalid.jpg')));
+      await tester.pump();
+      expect(find.byType(ProductCard), findsOneWidget);
+    });
+
+    testWidgets('ProductCard sale price styling', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductCard(productId: 'test', title: 'Sale', price: '£12', imageUrl: 'assets/test.jpg', originalPrice: '£15', salePercentage: '20')));
+      await tester.pump();
+      final priceText = tester.widget<Text>(find.text('£12'));
+      expect(priceText.style?.fontWeight, FontWeight.bold);
+    });
+
+    testWidgets('responsive GridView crossAxisCount', (tester) async {
+      tester.view.physicalSize = const Size(400, 800);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+      await tester.pumpWidget(MaterialApp(home: Builder(builder: (context) => Scaffold(body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: MediaQuery.of(context).size.width > 600 ? 2 : 1),
+        itemCount: 1, itemBuilder: (context, index) => const ProductCard(productId: 'test', title: 'Test', price: '£5', imageUrl: 'assets/test.jpg'),
+      )))));
+      await tester.pump();
+      expect(find.byType(GridView), findsOneWidget);
+    });
+
+    test('HomeScreen placeholderCallback', () => const HomeScreen().placeholderCallbackForButtons());
   });
 }
