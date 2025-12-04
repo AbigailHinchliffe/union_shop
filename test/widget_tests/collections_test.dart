@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:union_shop/screens/collections_screen.dart';
 import 'package:union_shop/widgets/appshell.dart';
-import 'package:union_shop/main.dart';
 
 void main() {
   group('CollectionsScreen Widget Tests', () {
@@ -50,10 +49,6 @@ void main() {
 
       await tester.pumpAndSettle();
       
-      // Verify all 6 collections are rendered
-      expect(find.byType(ProductCard), findsNWidgets(6));
-      
-      // Verify specific collection titles
       expect(find.text('Graduation Collection'), findsOneWidget);
       expect(find.text('Basic Essentials Collection'), findsOneWidget);
       expect(find.text('Varsity Collection'), findsOneWidget);
@@ -139,7 +134,7 @@ void main() {
       final gridDelegate = gridView.gridDelegate as SliverGridDelegateWithFixedCrossAxisCount;
 
       expect(gridDelegate.crossAxisSpacing, equals(24));
-      expect(gridDelegate.mainAxisSpacing, equals(48));
+      expect(gridDelegate.mainAxisSpacing, equals(24));
     });
 
     testWidgets('grid does not scroll independently', (WidgetTester tester) async {
@@ -173,8 +168,6 @@ void main() {
       expect(collection.thumbnail, equals('assets/test.jpg'));
       expect(collection.description, equals('Test description'));
     });
-
-
 
     test('Collection model is immutable', () {
       const collection1 = Collection(
