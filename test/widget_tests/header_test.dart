@@ -24,5 +24,22 @@ void main() {
       expect(find.text('Shop'), findsOneWidget);
       expect(find.text('About'), findsOneWidget);
     });
+
+    testWidgets('mobile shows dropdown menu', (tester) async {
+      tester.view.physicalSize = const Size(400, 800);
+      tester.view.devicePixelRatio = 1.0;
+      addTearDown(tester.view.resetPhysicalSize);
+      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: AppHeader())));
+      await tester.pump();
+      expect(find.byIcon(Icons.menu), findsOneWidget);
+    });
+
+    testWidgets('person icon navigates to login', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: Scaffold(body: AppHeader())));
+      await tester.pump();
+      await tester.tap(find.byIcon(Icons.person_outline));
+      await tester.pumpAndSettle();
+      expect(find.byType(LoginScreen), findsOneWidget);
+    });
   });
 }
