@@ -97,6 +97,30 @@ void main() {
       expect(find.byType(GridView), findsOneWidget);
     });
 
+    testWidgets('ProductCard Column and Expanded', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductCard(productId: 'test', title: 'Test', price: '£10', imageUrl: 'assets/test.jpg')));
+      await tester.pump();
+      expect(find.byType(Column), findsWidgets);
+      expect(find.byType(Expanded), findsOneWidget);
+    });
+
+    testWidgets('ProductCard Container and ClipRRect', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductCard(productId: 'test', title: 'Test', price: '£10', imageUrl: 'assets/test.jpg')));
+      await tester.pump();
+      expect(find.byType(Container), findsWidgets);
+      expect(find.byType(ClipRRect), findsOneWidget);
+    });
+
+    testWidgets('ProductCard SizedBox between elements', (tester) async {
+      await tester.pumpWidget(const MaterialApp(home: ProductCard(productId: 'test', title: 'Test', price: '£10', imageUrl: 'assets/test.jpg')));
+      await tester.pump();
+      expect(find.byType(SizedBox), findsWidgets);
+    });
+
+    test('ProductCatalog getFeaturedProducts count', () {
+      final products = ProductCatalog.getFeaturedProducts();
+      expect(products.length, 4);
+    });
     test('HomeScreen placeholderCallback', () => const HomeScreen().placeholderCallbackForButtons());
   });
 }
