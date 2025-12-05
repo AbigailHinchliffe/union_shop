@@ -52,7 +52,6 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
       }).toList();
     }
     
-    // Apply sorting
     if (_sortBy == 'a-z') {
       products.sort((a, b) => a['title']!.compareTo(b['title']!));
     } else if (_sortBy == 'z-a') {

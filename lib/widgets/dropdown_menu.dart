@@ -169,10 +169,6 @@ class _DropDownState extends State<DropDown> {
     setState(() => _isOpen = false); 
   }
 
-  //void _select(String value) {
-  //  _close(); 
-  //}
-
   @override
   void dispose() {
     _entry?.remove();
