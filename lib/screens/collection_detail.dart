@@ -20,6 +20,11 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
   int _currentPage = 1;
   final int _itemsPerPage = 6;
   String _sortBy = 'none';
+  String _priceFilter = 'all';
+
+  double _parsePrice(String priceString) {
+    return double.tryParse(priceString.replaceAll('£', '').replaceAll(',', '')) ?? 0.0;
+  }
 
   List<Map<String, String>> _getAllProducts() {
     List<Map<String, String>> products;
@@ -29,10 +34,33 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
       products = ProductCatalog.getProductsByCollection(widget.collectionId);
     }
     
+    if (_priceFilter != 'all') {
+      products = products.where((product) {
+        final price = _parsePrice(product['price']!);
+        switch (_priceFilter) {
+          case 'under10':
+            return price < 10;
+          case '10-25':
+            return price >= 10 && price <= 25;
+          case '25-50':
+            return price > 25 && price <= 50;
+          case 'over50':
+            return price > 50;
+          default:
+            return true;
+        }
+      }).toList();
+    }
+    
+    // Apply sorting
     if (_sortBy == 'a-z') {
       products.sort((a, b) => a['title']!.compareTo(b['title']!));
     } else if (_sortBy == 'z-a') {
       products.sort((a, b) => b['title']!.compareTo(a['title']!));
+    } else if (_sortBy == 'price-low') {
+      products.sort((a, b) => _parsePrice(a['price']!).compareTo(_parsePrice(b['price']!)));
+    } else if (_sortBy == 'price-high') {
+      products.sort((a, b) => _parsePrice(b['price']!).compareTo(_parsePrice(a['price']!)));
     }
     
     return products;
@@ -77,11 +105,28 @@ class _CollectionDetailScreenState extends State<CollectionDetailScreen> {
                   Row(
                     children: [
                       DropdownButton<String>(
+                        value: _priceFilter,
+                        items: const [
+                          DropdownMenuItem(value: 'all', child: Text('Price: All')),
+                          DropdownMenuItem(value: 'under10', child: Text('Under £10')),
+                          DropdownMenuItem(value: '10-25', child: Text('£10 - £25')),
+                          DropdownMenuItem(value: '25-50', child: Text('£25 - £50')),
+                          DropdownMenuItem(value: 'over50', child: Text('Over £50')),
+                        ],
+                        onChanged: (v) => setState(() {
+                          _priceFilter = v!;
+                          _currentPage = 1;
+                        }),
+                      ),
+                      const SizedBox(width: 8),
+                      DropdownButton<String>(
                         value: _sortBy,
                         items: const [
                           DropdownMenuItem(value: 'none', child: Text('Sort')),
                           DropdownMenuItem(value: 'a-z', child: Text('A-Z')),
                           DropdownMenuItem(value: 'z-a', child: Text('Z-A')),
+                          DropdownMenuItem(value: 'price-low', child: Text('Price: Low to High')),
+                          DropdownMenuItem(value: 'price-high', child: Text('Price: High to Low')),
                         ],
                         onChanged: (v) => setState(() {
                           _sortBy = v!;
